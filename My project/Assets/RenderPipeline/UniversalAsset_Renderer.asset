@@ -90,7 +90,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d8ea18ef85783d62bbda245552e7849, type: 3}
   m_Name: BlitMaterialFeature
   m_EditorClassIdentifier: 
-  m_Active: 0
+  m_Active: 1
   settings:
     material: {fileID: 2100000, guid: 73de09cba2be9beb8a60aef6cc8939b2, type: 2}
     materialPassIndex: 0

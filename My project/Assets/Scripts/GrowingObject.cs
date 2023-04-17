@@ -14,15 +14,21 @@ public class GrowingObject : MonoBehaviour, IGrowable
         set {sF = value;}
     }
 
+    private Rigidbody rb;
+
+    void Start(){
+        rb = GetComponent<Rigidbody>();
+    }
+
     void Update(){
-        GetComponent<Rigidbody>().mass = scaleFactor.x + scaleFactor.y + scaleFactor.z / 3f;
+        rb.mass = scaleFactor.x + scaleFactor.y + scaleFactor.z / 3f;
         transform.localScale = scaleFactor;
     }
 
     public void Grow(){
-        float yGrowth = Mathf.Clamp(transform.localScale.y, 1.0f, Mathf.Infinity);
-        float xGrowth = Mathf.Clamp(transform.localScale.x, 1.0f, Mathf.Infinity);
-        float zGrowth = Mathf.Clamp(transform.localScale.z, 1.0f, Mathf.Infinity);
+        float yGrowth = Mathf.Clamp(transform.localScale.y, 1.0f, 5.0f);
+        float xGrowth = Mathf.Clamp(transform.localScale.x, 1.0f, 5.0f);
+        float zGrowth = Mathf.Clamp(transform.localScale.z, 1.0f, 5.0f);
         if((Physics.BoxCast(transform.position, 
                            new Vector3(transform.localScale.x/2, transform.localScale.y/5,transform.localScale.z/2), 
                            transform.up, transform.rotation,

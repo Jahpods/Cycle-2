@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FillingObject : MonoBehaviour, IGrowable
+public class LightObject : MonoBehaviour, IGrowable
 {
     [SerializeField]
     private Vector3 minScale;
@@ -20,50 +20,47 @@ public class FillingObject : MonoBehaviour, IGrowable
     }
 
     void Update(){
+        rb.useGravity = false;
         rb.mass = scaleFactor.x + scaleFactor.y + scaleFactor.z / 3;
         transform.localScale = scaleFactor;
     }
 
+    void FixedUpdate(){
+        rb.AddForce(Vector3.down * (rb.mass * 50 - 200));
+    }
+
     public void Grow(){       
-        float yGrowth = Mathf.Clamp(transform.localScale.y, 1.0f, Mathf.Infinity);
-        if(Physics.BoxCast(transform.position, 
+        float yGrowth = Mathf.Clamp(transform.localScale.y, 1.0f, 5.0f);
+        float xGrowth = Mathf.Clamp(transform.localScale.x, 1.0f, 5.0f);
+        float zGrowth = Mathf.Clamp(transform.localScale.z, 1.0f, 5.0f);
+        if((Physics.BoxCast(transform.position, 
                            new Vector3(transform.localScale.x/2, transform.localScale.y/5,transform.localScale.z/2), 
                            transform.up, transform.rotation,
                            scaleFactor.y/3.2f) &&
             Physics.BoxCast(transform.position, 
                            new Vector3(transform.localScale.x/2, transform.localScale.y/5,transform.localScale.z/2), 
                            -transform.up, transform.rotation,
-                           scaleFactor.y/3.2f)){
-            yGrowth = 0;
-        }
-
-        float xGrowth = Mathf.Clamp(transform.localScale.x, 1.0f, Mathf.Infinity);
-        if(Physics.BoxCast(transform.position, 
+                           scaleFactor.y/3.2f)) ||
+            (Physics.BoxCast(transform.position, 
                            new Vector3(transform.localScale.x/5, transform.localScale.y/2,transform.localScale.z/2), 
                            transform.right, transform.rotation,
                            scaleFactor.x/3.2f) && 
             Physics.BoxCast(transform.position, 
                            new Vector3(transform.localScale.x/5, transform.localScale.y/2,transform.localScale.z/2), 
                            -transform.right, transform.rotation,
-                           scaleFactor.x/3.2f)){
-            xGrowth = 0;
-        }
-
-        float zGrowth = Mathf.Clamp(transform.localScale.z, 1.0f, Mathf.Infinity);
-        if(Physics.BoxCast(transform.position, 
+                           scaleFactor.x/3.2f)) ||
+            (Physics.BoxCast(transform.position, 
                            new Vector3(transform.localScale.x/2, transform.localScale.y/2,transform.localScale.z/5), 
                            transform.forward, transform.rotation,
                            scaleFactor.z/3.2f) && 
             Physics.BoxCast(transform.position, 
                            new Vector3(transform.localScale.x/2, transform.localScale.y/2,transform.localScale.z/5), 
                            -transform.forward, transform.rotation,
-                           scaleFactor.z/3.2f)){
+                           scaleFactor.z/3.2f))){
+            yGrowth = 0;
+            xGrowth = 0;
             zGrowth = 0;
         }
-
-
-
-
 
         scaleFactor += new Vector3(xGrowth,yGrowth, zGrowth) * Time.deltaTime;
     }

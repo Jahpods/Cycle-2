@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Purple
+  m_Name: Teal
   m_Shader: {fileID: -6465566751694194690, guid: 05de86bf31c9538408894054ed1931ff, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -77,6 +77,6 @@ Material:
     - _Thickness: 0
     m_Colors:
     - _AmbientLight: {r: 0.28301886, g: 0.28301886, b: 0.28301886, a: 0}
-    - _Color: {r: 0.45948458, g: 0, b: 1, a: 1}
+    - _Color: {r: 0, g: 0.96311355, b: 1, a: 1}
     - _OutlineColor: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []

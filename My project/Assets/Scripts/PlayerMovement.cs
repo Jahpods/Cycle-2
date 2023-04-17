@@ -140,4 +140,13 @@ public class PlayerMovement : MonoBehaviour
         return Physics.BoxCast(transform.position - transform.up * 0.5f, 
                                transform.localScale/2 - Vector3.up * transform.localScale.y/4, -transform.up, transform.rotation, 0.3f);
     }
+
+    public float GetSens(){
+        return sensitivityX;
+    }
+
+    public void SetSens(float sens){
+        sensitivityX = sens;
+        sensitivityY = sens;
+    }
 }

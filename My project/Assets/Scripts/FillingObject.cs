@@ -17,6 +17,9 @@ public class FillingObject : MonoBehaviour, IGrowable
 
     void Start(){
         rb = GetComponent<Rigidbody>();
+
+        scaleFactor = transform.localScale;
+        minScale = scaleFactor/2f;
     }
 
     void Update(){

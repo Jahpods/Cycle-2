@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public class GrowingObject : MonoBehaviour, IGrowable
+public class EnemyObject : MonoBehaviour, IGrowable
 {
-    private Vector3 minScale = new Vector3(0.2f,0.2f,0.2f);
+    [SerializeField]
+    private GameObject parts;
+    [SerializeField]
     private Vector3 sF;
     public Vector3 scaleFactor {
         get {return sF;}
@@ -17,12 +19,16 @@ public class GrowingObject : MonoBehaviour, IGrowable
     void Start(){
         rb = GetComponent<Rigidbody>();
         scaleFactor = transform.localScale;
-        minScale = scaleFactor/2f;
     }
 
     void Update(){
         rb.mass = scaleFactor.x + scaleFactor.y + scaleFactor.z / 3f;
         transform.localScale = scaleFactor;
+
+        rb.useGravity = false;
+        if(rb.velocity.magnitude > 0){
+            rb.AddForce(-rb.velocity * 0.8f);
+        }
     }
 
     public void Grow(){
@@ -62,14 +68,9 @@ public class GrowingObject : MonoBehaviour, IGrowable
     }
     public void Shrink(){
         scaleFactor -= transform.localScale * Time.deltaTime;
-        if(scaleFactor.x < minScale.x){
-            sF.x = minScale.x;
-        }
-        if(scaleFactor.y < minScale.y){
-            sF.y = minScale.y;
-        }
-        if(scaleFactor.z < minScale.z){
-            sF.z = minScale.z;
+        if(scaleFactor.x < 0.1f || scaleFactor.y < 0.1f || scaleFactor.z < 0.1f){
+            Instantiate(parts, transform.position, Quaternion.identity);
+            Destroy(gameObject);
         }
     }
 }

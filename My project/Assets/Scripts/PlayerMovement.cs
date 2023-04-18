@@ -64,6 +64,9 @@ public class PlayerMovement : MonoBehaviour
     {
         //Get Input from wasd and mouse movement
         moveVector = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
+        if(moveVector.magnitude > 1f){
+            moveVector = moveVector.normalized;
+        }
         mouseVector = new Vector2(Input.GetAxis("Mouse X"), 
                                   Input.GetAxis("Mouse Y"));
         if(Input.GetKeyDown(KeyCode.Space)){

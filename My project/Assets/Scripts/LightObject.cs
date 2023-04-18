@@ -4,9 +4,7 @@ using UnityEngine;
 
 public class LightObject : MonoBehaviour, IGrowable
 {
-    [SerializeField]
     private Vector3 minScale;
-    [SerializeField]
     private Vector3 sF;
     public Vector3 scaleFactor {
         get {return sF;}
@@ -19,7 +17,7 @@ public class LightObject : MonoBehaviour, IGrowable
         rb = GetComponent<Rigidbody>();
 
         scaleFactor = transform.localScale;
-        minScale = scaleFactor/2f;
+        minScale = new Vector3(0.2f,0.2f,0.2f);
     }
 
     void Update(){

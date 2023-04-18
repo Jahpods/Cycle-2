@@ -4,9 +4,7 @@ using UnityEngine;
 
 public class FillingObject : MonoBehaviour, IGrowable
 {
-    [SerializeField]
     private Vector3 minScale;
-    [SerializeField]
     private Vector3 sF;
     public Vector3 scaleFactor {
         get {return sF;}

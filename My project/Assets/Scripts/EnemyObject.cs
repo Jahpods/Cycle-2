@@ -9,6 +9,9 @@ public class EnemyObject : MonoBehaviour, IGrowable
     private GameObject parts;
     [SerializeField]
     private Vector3 sF;
+    [HideInInspector]
+    public bool isHeld;
+
     public Vector3 scaleFactor {
         get {return sF;}
         set {sF = value;}
@@ -32,7 +35,7 @@ public class EnemyObject : MonoBehaviour, IGrowable
     }
 
     public void Grow(){
-        float yGrowth = Mathf.Clamp(transform.localScale.y, 1.0f, 5.0f);
+        /*float yGrowth = Mathf.Clamp(transform.localScale.y, 1.0f, 5.0f);
         float xGrowth = Mathf.Clamp(transform.localScale.x, 1.0f, 5.0f);
         float zGrowth = Mathf.Clamp(transform.localScale.z, 1.0f, 5.0f);
         if((Physics.BoxCast(transform.position, 
@@ -64,13 +67,18 @@ public class EnemyObject : MonoBehaviour, IGrowable
             zGrowth = 0;
         }
 
-        scaleFactor += new Vector3(xGrowth,yGrowth, zGrowth) * Time.deltaTime;
+        scaleFactor += new Vector3(xGrowth,yGrowth, zGrowth) * Time.deltaTime;*/
     }
     public void Shrink(){
-        scaleFactor -= transform.localScale * Time.deltaTime;
-        if(scaleFactor.x < 0.1f || scaleFactor.y < 0.1f || scaleFactor.z < 0.1f){
-            Instantiate(parts, transform.position, Quaternion.identity);
-            Destroy(gameObject);
+        if(!isHeld){
+            scaleFactor -= transform.localScale * Time.deltaTime * Time.deltaTime;
+        }else{
+            scaleFactor -= transform.localScale * Time.deltaTime;
+            if(scaleFactor.x < 0.1f || scaleFactor.y < 0.1f || scaleFactor.z < 0.1f){
+                Instantiate(parts, transform.position, Quaternion.identity);
+                Destroy(gameObject);
+            }
         }
+
     }
 }

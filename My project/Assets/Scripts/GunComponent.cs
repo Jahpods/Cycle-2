@@ -146,7 +146,7 @@ public class GunComponent : MonoBehaviour
     }
 
     bool canPickUp(){
-        if(target.collider !=  null && target.collider.CompareTag("GrowingObject")){
+        if(target.collider !=  null && (target.collider.CompareTag("GrowingObject") || target.collider.CompareTag("Enemy"))){
             return (Vector3.Distance(target.point, transform.position) < pickUpRange && 
                 averageVector(target.transform.GetComponent<IGrowable>().scaleFactor) < pickUpSizeMax);
         }else{
@@ -157,6 +157,9 @@ public class GunComponent : MonoBehaviour
 
     void PickUpObject(GameObject pickObj){
         if(heldObj == null){
+            if(pickObj.CompareTag("Enemy")){
+                pickObj.GetComponent<EnemyObject>().isHeld = true;
+            }
             Physics.IgnoreCollision(pickObj.GetComponent<Collider>(), GetComponent<Collider>(), true);
             heldObjRb = pickObj.GetComponent<Rigidbody>();
             heldObjRb.useGravity = false;
@@ -168,6 +171,9 @@ public class GunComponent : MonoBehaviour
     }
 
     void DropObject(){
+        if(heldObj.CompareTag("Enemy")){
+            heldObj.GetComponent<EnemyObject>().isHeld = false;
+        }
         Physics.IgnoreCollision(heldObj.GetComponent<Collider>(), GetComponent<Collider>(), false);
         heldObjRb.useGravity = true;
         heldObjRb.drag = 0;

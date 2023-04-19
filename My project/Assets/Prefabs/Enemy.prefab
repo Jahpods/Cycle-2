@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: 6349982061980019226}
   - component: {fileID: 6349982061980019217}
   - component: {fileID: 6349982061980019216}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Enemy
-  m_TagString: GrowingObject
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -130,6 +130,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parts: {fileID: 4480980963563763805, guid: 3732e2873301703a4b11a0af886326cd, type: 3}
   sF: {x: 0, y: 0, z: 0}
+  isHeld: 0
 --- !u!1 &6349982063301684496
 GameObject:
   m_ObjectHideFlags: 0
@@ -141,7 +142,7 @@ GameObject:
   - component: {fileID: 6349982063301684499}
   - component: {fileID: 6349982063301684493}
   - component: {fileID: 6349982063301684498}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: EnemyParts
   m_TagString: Untagged
   m_Icon: {fileID: 0}

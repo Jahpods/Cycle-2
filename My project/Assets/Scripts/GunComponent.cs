@@ -38,7 +38,6 @@ public class GunComponent : MonoBehaviour
     private float pickUpSizeMax = 1.0f;
     [SerializeField]
     private float pickUpStrength = 150.0f;
-
     
     // Update is called once per frame
     void Update()
@@ -96,6 +95,7 @@ public class GunComponent : MonoBehaviour
         if((target.collider != null && target.collider.gameObject.CompareTag("GrowingObject")) || heldObj != null){
             //Handle Growing and Shrinking of Objects
             GameObject obj = heldObj == null ? target.transform.gameObject : heldObj;
+
             if(Input.GetMouseButton(0)){
                 obj.transform.GetComponent<IGrowable>().Grow();
             }else if(Input.GetMouseButton(1)){
@@ -105,6 +105,7 @@ public class GunComponent : MonoBehaviour
 
 
         //Handle Picking Up objects
+        // Input.GetMouseButtonDown(2) OLD CONTROLS MIDDLE CLICK TO PICK UP
         if(Input.GetMouseButtonDown(2)){
             if(heldObj == null && canPickUp()){
                 PickUpObject(target.transform.gameObject);

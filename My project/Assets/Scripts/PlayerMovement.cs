@@ -8,12 +8,15 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private float Speed;
     [SerializeField]
+    private float SprintMultiplier;
+    [SerializeField]
     private float MaxSpeed;
     [SerializeField]
     private float MinSpeed;
     [Range(0f,1f), SerializeField]
     private float Friction;
     private Vector3 moveVector;
+    private bool isSprinting;
 
     [Header("Jumping and Gravity")]
     [SerializeField]
@@ -74,6 +77,12 @@ public class PlayerMovement : MonoBehaviour
             cJumpBuffer = JumpBuffer;
         }
 
+        if(Input.GetKey(KeyCode.LeftShift)){
+            isSprinting = true;
+        }else{
+            isSprinting = false;
+        }
+
         if(IsGrounded() && !IsJumping){
             cCoyoteTime = CoyoteTime;
         }else if(CoyoteTime >= 0){
@@ -111,7 +120,7 @@ public class PlayerMovement : MonoBehaviour
         transform.Rotate(Vector3.up * mouseVector.x * sensitivityX);
 
         //Apply Gravity
-        if(IsGrounded()){
+        if(IsGrounded() && rb.velocity.y <= 0){
             rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
         }else{
             rb.velocity += Vector3.down * Gravity;       
@@ -125,7 +134,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         //Apply Movement
-        if(xzMagnitude < MaxSpeed){
+        if(xzMagnitude < (MaxSpeed + Sprinting() * SprintMultiplier)){
             rb.velocity += (transform.forward * moveVector.z + transform.right * moveVector.x) * Speed;
         }     
     }
@@ -142,6 +151,14 @@ public class PlayerMovement : MonoBehaviour
         }        
         return Physics.BoxCast(transform.position - transform.up * 0.5f, 
                                transform.localScale/2 - Vector3.up * transform.localScale.y/4, -transform.up, transform.rotation, 0.3f);
+    }
+
+    int Sprinting(){
+        if(isSprinting){
+            return 1;
+        }else{
+            return 0;
+        }
     }
 
     public float GetSens(){

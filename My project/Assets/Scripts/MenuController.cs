@@ -11,6 +11,8 @@ public class MenuController : MonoBehaviour
     [SerializeField]
     private GunComponent[] components;
 
+    private bool wasFalse;
+
     void Start(){
         UnPause();
     }
@@ -28,6 +30,7 @@ public class MenuController : MonoBehaviour
 
     void StartPause(){
         foreach(GunComponent c in components){
+            wasFalse = c.enabled == false;
             c.enabled = false;
         }
         menuScreen.SetActive(true);
@@ -38,7 +41,9 @@ public class MenuController : MonoBehaviour
 
     void UnPause(){
         foreach(GunComponent c in components){
-            c.enabled = true;
+            if(!wasFalse){
+               c.enabled = true; 
+            }  
         }
         menuScreen.SetActive(false);
         Time.timeScale = 1;

@@ -5,7 +5,9 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class GrowingObject : MonoBehaviour, IGrowable
 {
+    [SerializeField]
     private Vector3 minScale = new Vector3(0.2f,0.2f,0.2f);
+    [SerializeField]
     private Vector3 sF;
     public Vector3 scaleFactor {
         get {return sF;}

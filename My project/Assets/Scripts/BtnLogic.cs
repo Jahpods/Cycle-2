@@ -16,7 +16,7 @@ public class BtnLogic : MonoBehaviour
     private Color[] colours;
     private bool btnPressed;
     private Vector3 doorPos;
-    void OnTriggerEnter(Collider other){
+    void OnTriggerStay(Collider other){
         if(other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("GrowingObject")){
             btnPressed = true;
         }

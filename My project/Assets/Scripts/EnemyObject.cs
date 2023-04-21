@@ -18,8 +18,12 @@ public class EnemyObject : MonoBehaviour, IGrowable
     }
 
     private Rigidbody rb;
+    private Vector3 enemyPosition;
+    private bool shrinking;
+    private int rando;
 
     void Start(){
+        enemyPosition = transform.position;
         rb = GetComponent<Rigidbody>();
         scaleFactor = transform.localScale;
     }
@@ -32,6 +36,16 @@ public class EnemyObject : MonoBehaviour, IGrowable
         if(rb.velocity.magnitude > 0){
             rb.AddForce(-rb.velocity * 0.8f);
         }
+
+        if(!shrinking){
+            rando = Random.Range(0,2);
+            if(Vector3.Distance(transform.position, enemyPosition) > 1f){
+                rb.MovePosition(transform.position + (enemyPosition - transform.position) * Time.deltaTime * 4);
+            }
+        }else{
+            shrinking = false;
+        }
+        
     }
 
     public void Grow(){
@@ -70,8 +84,12 @@ public class EnemyObject : MonoBehaviour, IGrowable
         scaleFactor += new Vector3(xGrowth,yGrowth, zGrowth) * Time.deltaTime;*/
     }
     public void Shrink(){
+        shrinking = true;
         if(!isHeld){
-            scaleFactor -= transform.localScale * Time.deltaTime * Time.deltaTime;
+            Debug.Log("Moving");
+            Vector3 moveDir = Vector3.Cross(Vector3.up, GameObject.FindGameObjectWithTag("Player").transform.position - transform.position).normalized;
+            moveDir = ((rando == 1) ? -1 : 1) * moveDir;
+            rb.MovePosition(transform.position + moveDir * Time.deltaTime * 40);
         }else{
             scaleFactor -= transform.localScale * Time.deltaTime;
             if(scaleFactor.x < 0.1f || scaleFactor.y < 0.1f || scaleFactor.z < 0.1f){

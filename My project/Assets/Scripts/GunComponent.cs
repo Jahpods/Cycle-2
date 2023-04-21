@@ -92,10 +92,9 @@ public class GunComponent : MonoBehaviour
         lr.SetPosition(0, gun.position);
 
         //Handle Gun Shooting
-        if((target.collider != null && target.collider.gameObject.CompareTag("GrowingObject")) || heldObj != null){
+        if((target.collider != null && target.collider.gameObject.CompareTag("GrowingObject")) || heldObj != null || target.collider.gameObject.CompareTag("Enemy")){
             //Handle Growing and Shrinking of Objects
             GameObject obj = heldObj == null ? target.transform.gameObject : heldObj;
-
             if(Input.GetMouseButton(0)){
                 obj.transform.GetComponent<IGrowable>().Grow();
             }else if(Input.GetMouseButton(1)){

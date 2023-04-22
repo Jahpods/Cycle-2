@@ -86,7 +86,6 @@ public class EnemyObject : MonoBehaviour, IGrowable
     public void Shrink(){
         shrinking = true;
         if(!isHeld){
-            Debug.Log("Moving");
             Vector3 moveDir = Vector3.Cross(Vector3.up, GameObject.FindGameObjectWithTag("Player").transform.position - transform.position).normalized;
             moveDir = ((rando == 1) ? -1 : 1) * moveDir;
             rb.MovePosition(transform.position + moveDir * Time.deltaTime * 40);

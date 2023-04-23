@@ -14,4 +14,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/FirstScene_Prototype.unity
     guid: 99fdcaf0076c2a27db49eba1ff3991de
+  - enabled: 1
+    path: Assets/Scenes/Won.unity
+    guid: 0634c54d60b9c4ff1939f0c15b9a805a
+  - enabled: 1
+    path: Assets/Scenes/Lost.unity
+    guid: f5a40d1eab30fe6f7bee484bf4b07bef
   m_configObjects: {}

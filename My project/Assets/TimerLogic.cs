@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(LineRenderer))]
 public class TimerLogic : MonoBehaviour
@@ -35,6 +36,15 @@ public class TimerLogic : MonoBehaviour
         CalculateLines();
         cTimeLimit -= Time.deltaTime * enemies.Length / maxEnemyCount;
         txt.text = Mathf.FloorToInt(cTimeLimit).ToString();
+        if(enemies.Length == 0){
+            SceneManager.LoadScene("Won");
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+        }else if(cTimeLimit <= 0){
+            SceneManager.LoadScene("Lost");
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+        }
     }
 
     void CalculateLines(){

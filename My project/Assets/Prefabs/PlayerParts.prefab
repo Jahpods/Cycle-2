@@ -1037,7 +1037,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 5
-  SprintMultiplier: 10
+  SprintMultiplier: 5
   MaxSpeed: 10
   MinSpeed: 0.01
   Friction: 0.3
@@ -1146,7 +1146,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 375
+    m_Bits: 1399
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0

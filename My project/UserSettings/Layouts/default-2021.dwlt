@@ -173,7 +173,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 200}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 25
+  controlID: 93
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -1147,7 +1147,7 @@ MonoBehaviour:
     m_ControlHash: -371814159
     m_PrefName: Preview_InspectorPreview
   m_LastInspectedObjectInstanceID: -1
-  m_LastVerticalScrollValue: 0
+  m_LastVerticalScrollValue: 540
   m_GlobalObjectId: 
   m_InspectorMode: 0
   m_LockTracker:
@@ -1195,21 +1195,21 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Prefabs
+    - Assets/Scripts
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Prefabs
+  - Assets/Scripts
   m_LastFoldersGridSize: -1
   m_LastProjectPath: /home/darius/Documents/UnityGames/Cycle-2/My project
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 7c5d0000
-    m_LastClickedID: 23932
+    m_SelectedIDs: 825d0000
+    m_LastClickedID: 23938
     m_ExpandedIDs: 00000000665d000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -1646,9 +1646,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 26.250517, y: -21.56279, z: -86.93721}
+    m_Target: {x: 41.161736, y: -23.082798, z: -101.272766}
     speed: 2
-    m_Value: {x: 26.250517, y: -21.56279, z: -86.93721}
+    m_Value: {x: 41.161736, y: -23.082798, z: -101.272766}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1695,13 +1695,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: -0.28062043, y: -0.6903154, z: 0.3362642, w: -0.5760066}
+    m_Target: {x: -0.3178395, y: -0.5004162, z: 0.20409451, w: -0.77913266}
     speed: 2
-    m_Value: {x: -0.27552575, y: -0.69882846, z: 0.3404116, w: -0.56554776}
+    m_Value: {x: -0.31781715, y: -0.50038105, z: 0.20408016, w: -0.7790779}
   m_Size:
-    m_Target: 25.97415
+    m_Target: 42.15223
     speed: 2
-    m_Value: 25.97415
+    m_Value: 42.15223
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -1758,9 +1758,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 
-      m_LastClickedID: 0
-      m_ExpandedIDs: 36fbffff78580000ca590000
+      m_SelectedIDs: 425a0000
+      m_LastClickedID: 23106
+      m_ExpandedIDs: 00fbffff36fbffff425a0000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 

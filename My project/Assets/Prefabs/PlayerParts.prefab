@@ -1077,8 +1077,8 @@ MonoBehaviour:
   gun: {fileID: 4466765134123361191}
   crosshair: {fileID: 1375779267759706371}
   heldArea: {fileID: 4466765133174760582}
-  heldPosition: {x: 0, y: 0, z: 3.3}
-  pickUpRange: 5
+  heldPosition: {x: 0, y: 0, z: 4}
+  pickUpRange: 4
   pickUpSizeMax: 2
   pickUpStrength: 100
 --- !u!1 &4466765133316460971

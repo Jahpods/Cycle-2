@@ -21,7 +21,14 @@ public class GunComponent : MonoBehaviour
     [SerializeField]
     private Transform gun;
     [SerializeField]
+    private Transform shoot;
+    [SerializeField]
     private Image crosshair;
+
+    [SerializeField]
+    private Material[] mat;
+    [SerializeField]
+    private MeshRenderer[] mr;
 
     [Header("Pickup Settings")]
     [SerializeField]
@@ -38,21 +45,23 @@ public class GunComponent : MonoBehaviour
     private float pickUpSizeMax = 1.0f;
     [SerializeField]
     private float pickUpStrength = 150.0f;
+    [SerializeField]
+    private PhysicMaterial[] pm;
     
     // Update is called once per frame
     void Update()
     {
-        lr.SetPosition(1,gun.position);
+        lr.SetPosition(1,shoot.position);
         target = Intersect();
 
         //Handle Visuals
         if(heldObj != null){
             if(Input.GetMouseButton(0)){
-                lr.material.SetColor("_Color", colours[0]);
+                ChangeColours(0);
             }else if(Input.GetMouseButton(1)){
-                lr.material.SetColor("_Color", colours[1]);
+                ChangeColours(1);
             }else{
-                lr.material.SetColor("_Color", colours[2]);
+                ChangeColours(2);
             }
             lr.SetPosition(1, heldObj.transform.position);
             gun.forward = Vector3.Lerp(gun.forward, heldObj.transform.position - gun.position, Time.deltaTime * 200f);
@@ -61,10 +70,10 @@ public class GunComponent : MonoBehaviour
         }else{
             bool isShooting = false;
             if(Input.GetMouseButton(0)){
-                lr.material.SetColor("_Color", colours[0]);
+                ChangeColours(0);;
                 isShooting = true;
             }else if(Input.GetMouseButton(1)){
-                lr.material.SetColor("_Color", colours[1]);
+                ChangeColours(1);
                 isShooting = true;
             }
 
@@ -141,6 +150,14 @@ public class GunComponent : MonoBehaviour
         }
     }
 
+    void ChangeColours(int i){
+        lr.material.SetColor("_Color", colours[i]);
+
+        foreach(MeshRenderer rend in mr){
+            rend.material = mat[i];
+        }
+    }
+
     float averageVector(Vector3 vec){
         return (vec.x + vec.y + vec.z) / 3;
     }
@@ -160,6 +177,7 @@ public class GunComponent : MonoBehaviour
             if(pickObj.CompareTag("Enemy")){
                 pickObj.GetComponent<EnemyObject>().isHeld = true;
             }
+            pickObj.GetComponent<Collider>().material = pm[0];
             Physics.IgnoreCollision(pickObj.GetComponent<Collider>(), GetComponent<Collider>(), true);
             heldObjRb = pickObj.GetComponent<Rigidbody>();
             heldObjRb.useGravity = false;
@@ -174,6 +192,7 @@ public class GunComponent : MonoBehaviour
         if(heldObj.CompareTag("Enemy")){
             heldObj.GetComponent<EnemyObject>().isHeld = false;
         }
+        heldObj.GetComponent<Collider>().material = pm[1];
         Physics.IgnoreCollision(heldObj.GetComponent<Collider>(), GetComponent<Collider>(), false);
         heldObjRb.useGravity = true;
         heldObjRb.drag = 0;

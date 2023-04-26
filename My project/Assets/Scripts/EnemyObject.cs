@@ -21,11 +21,13 @@ public class EnemyObject : MonoBehaviour, IGrowable
     private Vector3 enemyPosition;
     private bool shrinking;
     private int rando;
+    private Transform playerTf;
 
     void Start(){
         enemyPosition = transform.position;
         rb = GetComponent<Rigidbody>();
         scaleFactor = transform.localScale;
+        playerTf = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     void Update(){
@@ -46,6 +48,7 @@ public class EnemyObject : MonoBehaviour, IGrowable
             shrinking = false;
         }
         
+        transform.LookAt(playerTf);
     }
 
     public void Grow(){

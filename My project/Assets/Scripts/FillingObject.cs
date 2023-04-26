@@ -26,7 +26,7 @@ public class FillingObject : MonoBehaviour, IGrowable
     }
 
     public void Grow(){       
-        float yGrowth = Mathf.Clamp(transform.localScale.y, 1.0f, Mathf.Infinity);
+        float yGrowth = Mathf.Clamp(transform.localScale.y, 1.0f, 5.0f);
         if(Physics.BoxCast(transform.position, 
                            new Vector3(transform.localScale.x/2, transform.localScale.y/5,transform.localScale.z/2), 
                            transform.up, transform.rotation,
@@ -38,7 +38,7 @@ public class FillingObject : MonoBehaviour, IGrowable
             yGrowth = 0;
         }
 
-        float xGrowth = Mathf.Clamp(transform.localScale.x, 1.0f, Mathf.Infinity);
+        float xGrowth = Mathf.Clamp(transform.localScale.x, 1.0f, 5.0f);
         if(Physics.BoxCast(transform.position, 
                            new Vector3(transform.localScale.x/5, transform.localScale.y/2,transform.localScale.z/2), 
                            transform.right, transform.rotation,
@@ -50,7 +50,7 @@ public class FillingObject : MonoBehaviour, IGrowable
             xGrowth = 0;
         }
 
-        float zGrowth = Mathf.Clamp(transform.localScale.z, 1.0f, Mathf.Infinity);
+        float zGrowth = Mathf.Clamp(transform.localScale.z, 1.0f, 5.0f);
         if(Physics.BoxCast(transform.position, 
                            new Vector3(transform.localScale.x/2, transform.localScale.y/2,transform.localScale.z/5), 
                            transform.forward, transform.rotation,

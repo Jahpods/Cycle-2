@@ -6,6 +6,7 @@ TagManager:
   tags:
   - GrowingObject
   - Enemy
+  - DialogueManager
   layers:
   - Default
   - TransparentFX

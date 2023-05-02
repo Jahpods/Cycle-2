@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public class EnemyObject : MonoBehaviour, IGrowable, IEnemy
+public class CardboardEnemy : MonoBehaviour, IGrowable, IEnemy
 {
     [SerializeField]
     private GameObject parts;
@@ -23,7 +23,7 @@ public class EnemyObject : MonoBehaviour, IGrowable, IEnemy
 
     private Rigidbody rb;
     private Vector3 enemyPosition;
-    private bool shrinking;
+    private bool poppedOff;
     private int rando;
     private Transform playerTf;
 
@@ -38,21 +38,21 @@ public class EnemyObject : MonoBehaviour, IGrowable, IEnemy
         rb.mass = scaleFactor.x + scaleFactor.y + scaleFactor.z / 3f;
         transform.localScale = scaleFactor;
 
-        rb.useGravity = false;
-        if(rb.velocity.magnitude > 0){
-            rb.AddForce(-rb.velocity * 0.8f);
+        if(!poppedOff){
+            if(rb.velocity.magnitude < 6f){
+                rb.useGravity = false;
+                rb.velocity = Vector3.zero;
+                rb.freezeRotation = true;
+                transform.position = enemyPosition;
+            }else{
+                rb.useGravity = true;
+                rb.freezeRotation = false;
+                poppedOff = true;
+            }
         }
 
-        if(!shrinking){
-            rando = Random.Range(0,2);
-            if(Vector3.Distance(transform.position, enemyPosition) > 1f){
-                rb.MovePosition(transform.position + (enemyPosition - transform.position) * Time.deltaTime * 4);
-            }
-        }else{
-            shrinking = false;
-        }
         
-        transform.LookAt(playerTf);
+        //transform.LookAt(playerTf);
     }
 
     public void Grow(){
@@ -91,14 +91,13 @@ public class EnemyObject : MonoBehaviour, IGrowable, IEnemy
         scaleFactor += new Vector3(xGrowth,yGrowth, zGrowth) * Time.deltaTime;*/
     }
     public void Shrink(){
-        shrinking = true;
-        if(!isHeld){
+        if(!isHeld || !poppedOff){
             Vector3 moveDir = Vector3.Cross(Vector3.up, GameObject.FindGameObjectWithTag("Player").transform.position - transform.position).normalized;
             moveDir = ((rando == 1) ? -1 : 1) * moveDir;
             rb.MovePosition(transform.position + moveDir * Time.deltaTime * 40);
         }else{
             scaleFactor -= transform.localScale * Time.deltaTime;
-            if(scaleFactor.x < 0.1f || scaleFactor.y < 0.1f || scaleFactor.z < 0.1f){
+            if((scaleFactor.x + scaleFactor.y + scaleFactor.z) / 3 < 0.3f){
                 Instantiate(parts, transform.position, Quaternion.identity);
                 Destroy(gameObject);
             }

@@ -175,7 +175,7 @@ public class GunComponent : MonoBehaviour
     void PickUpObject(GameObject pickObj){
         if(heldObj == null){
             if(pickObj.CompareTag("Enemy")){
-                pickObj.GetComponent<EnemyObject>().isHeld = true;
+                pickObj.GetComponent<IEnemy>().Holding = true;  
             }
             pickObj.GetComponent<Collider>().material = pm[0];
             Physics.IgnoreCollision(pickObj.GetComponent<Collider>(), GetComponent<Collider>(), true);
@@ -190,7 +190,7 @@ public class GunComponent : MonoBehaviour
 
     void DropObject(){
         if(heldObj.CompareTag("Enemy")){
-            heldObj.GetComponent<EnemyObject>().isHeld = false;
+            heldObj.GetComponent<IEnemy>().Holding = false;
         }
         heldObj.GetComponent<Collider>().material = pm[1];
         Physics.IgnoreCollision(heldObj.GetComponent<Collider>(), GetComponent<Collider>(), false);

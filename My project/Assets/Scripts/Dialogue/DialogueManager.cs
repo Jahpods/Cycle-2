@@ -17,27 +17,33 @@ public class DialogueManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(inDialogue){
+        /*if(inDialogue){
             if(Input.anyKey){
                 StartCoroutine(endDialogue());
             }
-        }
+        }*/
     }
 
     public IEnumerator startDialogue(string val){
-        Time.timeScale = 0;
-        txtBox.SetActive(true);
-        anim.Play("Enter");
-        yield return new WaitForSecondsRealtime(0.5f);
-        txt.text = val;
-        yield return new WaitForSecondsRealtime(0.5f);
-        inDialogue = true;
+        if(!inDialogue){
+            txtBox.SetActive(true);
+            anim.Play("Enter");
+            yield return new WaitForSecondsRealtime(0.5f);
+            inDialogue = true;
+        }
+
+        for (int i = 0; i < (val.Length + 1); i++)
+        {
+            txt.text = val.Substring(0,i);
+            yield return new WaitForSecondsRealtime(0.03f);
+        }
+;
+        
     }
 
     IEnumerator endDialogue(){
         inDialogue = false;
         anim.Play("Leave");
-        Time.timeScale = 1;
         yield return new WaitForSecondsRealtime(0.5f);
         txtBox.SetActive(false);
         txt.text = "";

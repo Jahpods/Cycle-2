@@ -41,7 +41,7 @@ public class CardboardEnemy : MonoBehaviour, IGrowable, IEnemy
         if(!poppedOff){
             if(rb.velocity.magnitude < 6f){
                 rb.useGravity = false;
-                rb.velocity = Vector3.zero;
+                rb.velocity = rb.velocity / 3f;
                 rb.freezeRotation = true;
                 transform.position = enemyPosition;
             }else{

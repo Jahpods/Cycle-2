@@ -51,7 +51,8 @@ public class GunComponent : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        lr.SetPosition(1,shoot.position);
+        //lr.SetPosition(1,shoot.position);
+        lr.SetPosition(1,gun.position);
         target = Intersect();
 
         //Handle Visuals

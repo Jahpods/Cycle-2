@@ -48,6 +48,16 @@ public class PlayerMovement : MonoBehaviour
     private Transform ch;
     private Rigidbody rb;
 
+    //Visual
+    [Header("Visuals")]
+    [SerializeField]
+    private ParticleSystem ps;
+
+    //Animations
+    private Animator anim;
+    private string currentState;
+    private bool landing;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -60,6 +70,9 @@ public class PlayerMovement : MonoBehaviour
         //Set Timers
         cJumpBuffer = JumpBuffer;
         cCoyoteTime = CoyoteTime;
+
+        //Animator
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -108,6 +121,45 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
+        //Animations
+        if(IsGrounded()){
+            if(currentState == "PlayerAirborn" || landing){
+                landing = true;
+                ChangeAnimationState("PlayerLand");
+                Invoke("Land", 0.1f);
+            }else{
+                if(moveVector != Vector3.zero){
+                    if(isSprinting){
+                        ChangeAnimationState("PlayerRun");
+                    }else{
+                        ChangeAnimationState("PlayerWalk");
+                    }  
+                }else{
+                    ChangeAnimationState("PlayerIdle");
+                }
+            }
+        }else{
+            if(!IsGrounded()){
+                landing = true;
+                if(rb.velocity.y > 0){
+                    ChangeAnimationState("PlayerAirborn");
+                }else{
+                    ChangeAnimationState("PlayerFall");
+
+                }
+                
+            }
+        }
+
+        if(moveVector != Vector3.zero && isSprinting){
+            ps.gameObject.SetActive(true);
+        }else{
+            ps.gameObject.SetActive(false);
+        }
+    }
+
+    void Land(){
+        landing = false;
     }
 
     void FixedUpdate(){
@@ -168,5 +220,13 @@ public class PlayerMovement : MonoBehaviour
     public void SetSens(float sens){
         sensitivityX = sens;
         sensitivityY = sens;
+    }
+
+    private void ChangeAnimationState(string newState){
+        if(newState == currentState) return;
+
+        anim.Play(newState);
+
+        currentState = newState;
     }
 }

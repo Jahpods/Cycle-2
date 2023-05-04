@@ -100,6 +100,7 @@ public class EnemyObject : MonoBehaviour, IGrowable, IEnemy
             scaleFactor -= transform.localScale * Time.deltaTime;
             if(scaleFactor.x < 0.1f || scaleFactor.y < 0.1f || scaleFactor.z < 0.1f){
                 Instantiate(parts, transform.position, Quaternion.identity);
+                GameObject.FindGameObjectWithTag("Volume").GetComponent<EditLook>().enemyDies.Invoke();
                 Destroy(gameObject);
             }
         }

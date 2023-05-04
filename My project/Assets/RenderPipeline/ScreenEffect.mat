@@ -41,9 +41,11 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Bits: 512
-    - _Distance: 0.5
+    - _Bits: 216
+    - _ColorThreshold: 0.5
+    - _Distance: 10
     - _FallOff: 3
+    - _NormalThreshold: 0.1
     - _OutlineThreshold: 0.5
     - _ViewDist: 50
     m_Colors: []

@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-5260547721199255524
+--- !u!114 &-5231796872804911697
 MonoBehaviour:
   m_ObjectHideFlags: 3
   m_CorrespondingSourceObject: {fileID: 0}
@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   active: 1
   postExposure:
-    m_OverrideState: 1
-    m_Value: -1.2
+    m_OverrideState: 0
+    m_Value: 0
   contrast:
     m_OverrideState: 0
     m_Value: 0
@@ -27,23 +27,8 @@ MonoBehaviour:
     m_Value: 0
   saturation:
     m_OverrideState: 1
-    m_Value: -28.5
---- !u!114 &11400000
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d7fd9488000d3734a9e00ee676215985, type: 3}
-  m_Name: DarkDull
-  m_EditorClassIdentifier: 
-  components:
-  - {fileID: -5260547721199255524}
-  - {fileID: 6535445713623337530}
---- !u!114 &6535445713623337530
+    m_Value: -75
+--- !u!114 &-366122572537540811
 MonoBehaviour:
   m_ObjectHideFlags: 3
   m_CorrespondingSourceObject: {fileID: 0}
@@ -57,14 +42,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   active: 1
   shadows:
-    m_OverrideState: 1
-    m_Value: {x: 0.9649011, y: 0.961553, z: 1, w: -0.25240386}
+    m_OverrideState: 0
+    m_Value: {x: 1, y: 1, z: 1, w: 0}
   midtones:
     m_OverrideState: 1
-    m_Value: {x: 0.87586707, y: 0.89418364, z: 1, w: -0.45673084}
+    m_Value: {x: 1, y: 1, z: 1, w: -0.24645007}
   highlights:
     m_OverrideState: 1
-    m_Value: {x: 0.91110253, y: 1, z: 0.9629344, w: 0}
+    m_Value: {x: 1, y: 1, z: 1, w: -0.6327437}
   shadowsStart:
     m_OverrideState: 0
     m_Value: 0
@@ -77,3 +62,18 @@ MonoBehaviour:
   highlightsEnd:
     m_OverrideState: 0
     m_Value: 1
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7fd9488000d3734a9e00ee676215985, type: 3}
+  m_Name: DarkDull
+  m_EditorClassIdentifier: 
+  components:
+  - {fileID: -5231796872804911697}
+  - {fileID: -366122572537540811}

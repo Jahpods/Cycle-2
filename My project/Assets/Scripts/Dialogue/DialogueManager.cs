@@ -35,7 +35,7 @@ public class DialogueManager : MonoBehaviour
         for (int i = 0; i < (val.Length + 1); i++)
         {
             txt.text = val.Substring(0,i);
-            yield return new WaitForSecondsRealtime(0.03f);
+            yield return new WaitForSecondsRealtime(0.02f);
         }
 ;
         

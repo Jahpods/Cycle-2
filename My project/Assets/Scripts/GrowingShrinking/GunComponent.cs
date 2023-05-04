@@ -47,6 +47,12 @@ public class GunComponent : MonoBehaviour
     private float pickUpStrength = 150.0f;
     [SerializeField]
     private PhysicMaterial[] pm;
+
+    private AudioManager am;
+
+    void Start(){
+        am = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
+    }
     
     // Update is called once per frame
     void Update()
@@ -54,6 +60,12 @@ public class GunComponent : MonoBehaviour
         //lr.SetPosition(1,shoot.position);
         lr.SetPosition(1,gun.position);
         target = Intersect();
+
+        if(Input.GetMouseButton(0) || Input.GetMouseButton(1) || heldObj != null){
+            am.Play("laser");
+        }else{
+            am.Pause("laser");
+        }
 
         //Handle Visuals
         if(heldObj != null){

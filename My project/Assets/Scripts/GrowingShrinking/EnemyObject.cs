@@ -22,6 +22,7 @@ public class EnemyObject : MonoBehaviour, IGrowable, IEnemy
     }
 
     private Rigidbody rb;
+    [SerializeField]
     private Vector3 enemyPosition;
     private bool shrinking;
     private int rando;
@@ -39,18 +40,36 @@ public class EnemyObject : MonoBehaviour, IGrowable, IEnemy
         transform.localScale = scaleFactor;
 
         rb.useGravity = false;
-        if(rb.velocity.magnitude > 0){
-            rb.AddForce(-rb.velocity * 0.8f);
-        }
 
-        if(!shrinking){
+        if(!isHeld){
+            Vector3 direction = enemyPosition - transform.position;
+            if(Vector3.Distance(transform.position, enemyPosition) > 0.05){
+                if(Vector3.Dot(rb.velocity, direction) < 0){
+                    rb.velocity -= rb.velocity.normalized * 20f * Time.deltaTime;
+                }else{
+                    if(direction.magnitude > 1){
+                        rb.MovePosition(transform.position + direction.normalized * Time.deltaTime * 20f); 
+                    }else{
+                        rb.MovePosition(transform.position + direction * Time.deltaTime * 15f); 
+                    }
+                    
+                }   
+            }else{
+                transform.position = enemyPosition;
+                rb.velocity = Vector3.zero;
+            }
+
+        } 
+
+
+        /*if(!shrinking){
             rando = Random.Range(0,2);
             if(Vector3.Distance(transform.position, enemyPosition) > 1f){
                 rb.MovePosition(transform.position + (enemyPosition - transform.position) * Time.deltaTime * 4);
             }
         }else{
             shrinking = false;
-        }
+        }*/
         
         transform.LookAt(playerTf);
     }

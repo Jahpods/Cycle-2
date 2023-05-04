@@ -63,7 +63,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!114 &6349982061980019216
 MonoBehaviour:
@@ -79,7 +79,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parts: {fileID: 4480980963563763805, guid: 3732e2873301703a4b11a0af886326cd, type: 3}
   sF: {x: 0, y: 0, z: 0}
-  isHeld: 0
+  enemyPosition: {x: 0, y: 0, z: 0}
 --- !u!212 &652483697636307898
 SpriteRenderer:
   m_ObjectHideFlags: 0

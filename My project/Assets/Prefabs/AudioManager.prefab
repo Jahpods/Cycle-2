@@ -47,13 +47,13 @@ MonoBehaviour:
   sounds:
   - name: Menu
     clip: {fileID: 8300000, guid: b339eab8687f844e4a0fae5a1e9e6983, type: 3}
-    volume: 0.239
+    volume: 0.13
     pitch: 1
     loop: 1
     source: {fileID: 0}
   - name: laser
     clip: {fileID: 8300000, guid: 421b573a870912621afb1c158dc6e29b, type: 3}
-    volume: 0.103
+    volume: 0.35
     pitch: 0.25
     loop: 1
     source: {fileID: 0}

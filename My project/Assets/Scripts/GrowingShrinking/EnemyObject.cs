@@ -41,7 +41,7 @@ public class EnemyObject : MonoBehaviour, IGrowable, IEnemy
 
         rb.useGravity = false;
 
-        if(!isHeld){
+        if(!isHeld && !shrinking){
             Vector3 direction = enemyPosition - transform.position;
             if(Vector3.Distance(transform.position, enemyPosition) > 0.05){
                 if(Vector3.Dot(rb.velocity, direction) < 0){
@@ -119,6 +119,7 @@ public class EnemyObject : MonoBehaviour, IGrowable, IEnemy
             scaleFactor -= transform.localScale * Time.deltaTime;
             if(scaleFactor.x < 0.1f || scaleFactor.y < 0.1f || scaleFactor.z < 0.1f){
                 Instantiate(parts, transform.position, Quaternion.identity);
+                GameObject.FindGameObjectWithTag("Volume").GetComponent<EditLook>().UpdateLook();
                 Destroy(gameObject);
             }
         }

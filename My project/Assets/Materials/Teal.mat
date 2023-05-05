@@ -72,11 +72,12 @@ Material:
     - _OThickness: 0.01
     - _QueueControl: 0
     - _QueueOffset: 0
+    - _ShadowPos: 0.5
     - _SpecularPoster: 1
     - _SpecularStrength: 1
     - _Thickness: 0
     m_Colors:
     - _AmbientLight: {r: 0.28301886, g: 0.28301886, b: 0.28301886, a: 0}
-    - _Color: {r: 0, g: 0.96311355, b: 1, a: 1}
+    - _Color: {r: 1, g: 0.7254902, b: 0.21960784, a: 1}
     - _OutlineColor: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []

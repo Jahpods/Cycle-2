@@ -1311,10 +1311,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 4466765134666167258, guid: 18eda7c9c90cb5c1a9cee8e738cfdab2, type: 3}
-      propertyPath: m_RenderPostProcessing
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5379508181590494983, guid: 18eda7c9c90cb5c1a9cee8e738cfdab2, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -3920,7 +3916,7 @@ GameObject:
   - component: {fileID: 1928537934}
   m_Layer: 0
   m_Name: Vol
-  m_TagString: Untagged
+  m_TagString: Volume
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3969,9 +3965,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eca6ac29417e42e35a30a12d0a1d4005, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyDies:
-    m_PersistentCalls:
-      m_Calls: []
   volume: {fileID: 1928537932}
 --- !u!1 &1949388687
 GameObject:

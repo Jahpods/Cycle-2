@@ -2085,8 +2085,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4397373668930812215}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.004000008, z: 0.85}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0.004000008, z: 0.063}
+  m_LocalScale: {x: 0.24, y: 0.24, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4466765133880853614}
@@ -7210,13 +7210,8 @@ MonoBehaviour:
   gun: {fileID: 4466765134123361191}
   shoot: {fileID: 5154496469385983697}
   crosshair: {fileID: 1375779267759706371}
-  mat:
-  - {fileID: 2100000, guid: e98a23a4dd6a8e7a5a6e5e08938fa2ae, type: 2}
-  - {fileID: 2100000, guid: 38d89850b6d715f6a857cb19dcf3a037, type: 2}
-  - {fileID: 2100000, guid: ce91ae26c0dee90dab5d51ad9323a6f6, type: 2}
   mr:
   - {fileID: 6555585535430486046}
-  - {fileID: 3294874047677393037}
   heldArea: {fileID: 4466765133174760582}
   heldPosition: {x: 0, y: 0, z: 4}
   pickUpRange: 4

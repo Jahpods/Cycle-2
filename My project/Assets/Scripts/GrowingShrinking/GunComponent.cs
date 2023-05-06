@@ -26,8 +26,6 @@ public class GunComponent : MonoBehaviour
     private Image crosshair;
 
     [SerializeField]
-    private Material[] mat;
-    [SerializeField]
     private MeshRenderer[] mr;
 
     [Header("Pickup Settings")]
@@ -167,7 +165,7 @@ public class GunComponent : MonoBehaviour
         lr.material.SetColor("_Color", colours[i]);
 
         foreach(MeshRenderer rend in mr){
-            rend.material = mat[i];
+            rend.material.SetColor("_Color", colours[i]);
         }
     }
 

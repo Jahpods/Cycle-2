@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: PostEffect
-  m_Shader: {fileID: -6465566751694194690, guid: 8096b2bf0eb4e2943bceb12e8ad9202f, type: 3}
+  m_Name: FogEffect
+  m_Shader: {fileID: -6465566751694194690, guid: ff21201d753970313a37d997ae106d89, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 4
@@ -38,22 +38,12 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Bits: 220.4
-    - _ColourThreshold: 0.38
-    - _DepthFallOffRange: 1.48
-    - _DepthThreshold: 0.7
-    - _Distance: 64.64
-    - _DistanceThreshold: 30
-    - _FogDensity: 0
-    - _LineThickness: 0.64
-    - _Power: 0.01
-    - _QueueControl: 0
-    - _QueueOffset: 0
-    - _SpecularPoster: 0
-    - _SpecularStrength: 0
-    - _Stripes: 0
+    - _Bits: 8
+    - _ColourThreshold: 0.3
+    - _DepthCutoff: 0
+    - _DepthThreshold: 0.3
+    - _FogDensity: 0.1
+    - _LineThickness: 0
     m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _FogColour: {r: 0.8113208, g: 0.6060884, b: 0.26406196, a: 1}
-    - _GlassTint: {r: 0, g: 0, b: 0, a: 0}
+    - _FogColour: {r: 0.8679245, g: 0.81546736, b: 0.70825917, a: 1}
   m_BuildTextureStacks: []

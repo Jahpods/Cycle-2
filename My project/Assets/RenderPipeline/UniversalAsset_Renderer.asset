@@ -1,5 +1,22 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-7308206813273506563
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35f0e542ea2aaa641a079aab59942a1d, type: 3}
+  m_Name: Fog
+  m_EditorClassIdentifier: 
+  m_Active: 1
+  settings:
+    material: {fileID: 2100000, guid: 00085b6fc94130e7a96d3dd0497372e6, type: 2}
+    materialPassIndex: 0
+    renderEvent: 450
 --- !u!114 &-5516431725978685498
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27,13 +44,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 35f0e542ea2aaa641a079aab59942a1d, type: 3}
-  m_Name: BlitMaterialFeature
+  m_Name: PixelOutline
   m_EditorClassIdentifier: 
   m_Active: 1
   settings:
     material: {fileID: 2100000, guid: 64f59372097c7e6579628e06981dc1a0, type: 2}
-    materialPassIndex: -1
-    renderEvent: 0
+    materialPassIndex: 0
+    renderEvent: 500
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -50,7 +67,8 @@ MonoBehaviour:
     debugReplacementPS: {fileID: 4800000, guid: cf852408f2e174538bcd9b7fda1c5ae7, type: 3}
   m_RendererFeatures:
   - {fileID: -2752754068695065898}
-  m_RendererFeatureMap: d65a6b5dc240ccd9
+  - {fileID: -7308206813273506563}
+  m_RendererFeatureMap: d65a6b5dc240ccd9fd3cbeb59f08949a
   m_UseNativeRenderPass: 0
   postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
   xrSystemData: {fileID: 11400000, guid: 60e1133243b97e347b653163a8c01b64, type: 2}

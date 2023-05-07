@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Teal
+  m_Name: Plush
   m_Shader: {fileID: -6465566751694194690, guid: 05de86bf31c9538408894054ed1931ff, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -78,6 +78,6 @@ Material:
     - _Thickness: 0
     m_Colors:
     - _AmbientLight: {r: 0.28301886, g: 0.28301886, b: 0.28301886, a: 0}
-    - _Color: {r: 1, g: 0.7254902, b: 0.21960784, a: 1}
+    - _Color: {r: 0.990566, g: 0.8631339, b: 0.3037113, a: 1}
     - _OutlineColor: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []

@@ -59,4 +59,8 @@ public class TimerLogic : MonoBehaviour
             lr.SetPosition(index, childPos);
         }
     }
+
+    void OnDrawGizmos(){
+        Gizmos.DrawSphere(childPos, 0.1f);
+    }
 }

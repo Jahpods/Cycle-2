@@ -48,7 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   childPos: {x: -9, y: 14.5, z: -39}
   txt: {fileID: 7684116464207813616}
-  sTimeLimit: 0
+  sTimeLimit: 180
 --- !u!120 &750769104250348989
 LineRenderer:
   m_ObjectHideFlags: 0

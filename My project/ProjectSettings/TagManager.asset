@@ -6,6 +6,9 @@ TagManager:
   tags:
   - GrowingObject
   - Enemy
+  - DialogueManager
+  - AudioManager
+  - Volume
   layers:
   - Default
   - TransparentFX

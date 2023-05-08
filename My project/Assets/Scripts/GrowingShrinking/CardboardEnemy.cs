@@ -39,7 +39,7 @@ public class CardboardEnemy : MonoBehaviour, IGrowable, IEnemy
         transform.localScale = scaleFactor;
 
         if(!poppedOff){
-            if(rb.velocity.magnitude < 6f){
+            if(rb.velocity.magnitude < 0.5f){
                 rb.useGravity = false;
                 rb.velocity = rb.velocity / 3f;
                 rb.freezeRotation = true;

@@ -7179,6 +7179,7 @@ MonoBehaviour:
   CoyoteTime: 0.1
   sensitivityX: 5
   sensitivityY: 3
+  stepCount: {x: 1, y: 1}
   ch: {fileID: 4466765133880853614}
   ps: {fileID: 497502035028387293}
 --- !u!114 &4466765133200543995

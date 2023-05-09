@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
 
@@ -14,7 +15,7 @@ public class TimerLogic : MonoBehaviour
 
     [HeaderAttribute("Time Limit")]
     [SerializeField]
-    private TMP_Text txt;
+    private Slider sld;
     [SerializeField]
     private float sTimeLimit;
     private float cTimeLimit;
@@ -24,6 +25,8 @@ public class TimerLogic : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        sld.maxValue = sTimeLimit;
+        sld.value = sTimeLimit;
         cTimeLimit = sTimeLimit;
         lr = GetComponent<LineRenderer>();
         CalculateLines();
@@ -34,8 +37,8 @@ public class TimerLogic : MonoBehaviour
     void Update()
     {
         CalculateLines();
-        cTimeLimit -= Time.deltaTime * enemies.Length / maxEnemyCount;
-        txt.text = Mathf.FloorToInt(cTimeLimit).ToString();
+        cTimeLimit -= Time.deltaTime;
+        sld.value = Mathf.FloorToInt(cTimeLimit);
         if(enemies.Length == 0){
             SceneManager.LoadScene("Won");
             Cursor.visible = true;
@@ -58,6 +61,11 @@ public class TimerLogic : MonoBehaviour
             index++;
             lr.SetPosition(index, childPos);
         }
+    }
+
+    public void EnemyDies(){
+        cTimeLimit += 30f;
+        cTimeLimit = Mathf.Clamp(cTimeLimit, 0, sTimeLimit);
     }
 
     void OnDrawGizmos(){

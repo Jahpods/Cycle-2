@@ -7242,7 +7242,6 @@ MonoBehaviour:
   CoyoteTime: 0.1
   sensitivityX: 5
   sensitivityY: 3
-  stepCount: {x: 1, y: 1}
   ch: {fileID: 4466765133880853614}
   ps: {fileID: 497502035028387293}
 --- !u!114 &4466765133200543995
@@ -7280,7 +7279,7 @@ MonoBehaviour:
   heldPosition: {x: 0, y: 0, z: 4}
   pickUpRange: 4
   pickUpSizeMax: 2
-  pickUpStrength: 100
+  pickUpStrength: 120
   pm:
   - {fileID: 13400000, guid: f77c6387763705f339fa1bffd9011f0e, type: 2}
   - {fileID: 13400000, guid: ee70da416ecfbd3d7873f1dc440be89f, type: 2}

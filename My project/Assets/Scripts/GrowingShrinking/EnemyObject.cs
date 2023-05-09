@@ -41,6 +41,20 @@ public class EnemyObject : MonoBehaviour, IGrowable, IEnemy
 
         rb.useGravity = false;
 
+
+        /*if(!shrinking){
+            rando = Random.Range(0,2);
+            if(Vector3.Distance(transform.position, enemyPosition) > 1f){
+                rb.MovePosition(transform.position + (enemyPosition - transform.position) * Time.deltaTime * 4);
+            }
+        }else{
+            shrinking = false;
+        }*/
+        
+        transform.LookAt(playerTf);
+    }
+
+    void FixedUpdate(){
         if(!isHeld && !shrinking){
             Vector3 direction = enemyPosition - transform.position;
             if(Vector3.Distance(transform.position, enemyPosition) > 0.05){
@@ -60,18 +74,6 @@ public class EnemyObject : MonoBehaviour, IGrowable, IEnemy
             }
 
         } 
-
-
-        /*if(!shrinking){
-            rando = Random.Range(0,2);
-            if(Vector3.Distance(transform.position, enemyPosition) > 1f){
-                rb.MovePosition(transform.position + (enemyPosition - transform.position) * Time.deltaTime * 4);
-            }
-        }else{
-            shrinking = false;
-        }*/
-        
-        transform.LookAt(playerTf);
     }
 
     public void Grow(){
@@ -120,6 +122,7 @@ public class EnemyObject : MonoBehaviour, IGrowable, IEnemy
             if(scaleFactor.x < 0.1f || scaleFactor.y < 0.1f || scaleFactor.z < 0.1f){
                 Instantiate(parts, transform.position, Quaternion.identity);
                 GameObject.FindGameObjectWithTag("Volume").GetComponent<EditLook>().UpdateLook();
+                GameObject.FindGameObjectWithTag("Time").GetComponent<TimerLogic>().EnemyDies();
                 Destroy(gameObject);
             }
         }

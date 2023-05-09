@@ -9,6 +9,7 @@ TagManager:
   - DialogueManager
   - AudioManager
   - Volume
+  - Time
   layers:
   - Default
   - TransparentFX

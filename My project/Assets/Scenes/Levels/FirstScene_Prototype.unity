@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44659358, g: 0.49642974, b: 0.57482505, a: 1}
+  m_IndirectSpecularColor: {r: 0.44658822, g: 0.49642313, b: 0.5748253, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4628,6 +4628,22 @@ PrefabInstance:
     - target: {fileID: 750769104250348990, guid: ab0f53f10cd018e03a0ef547ba3411d7, type: 3}
       propertyPath: m_Name
       value: LevelTimer
+      objectReference: {fileID: 0}
+    - target: {fileID: 4443489753264262105, guid: ab0f53f10cd018e03a0ef547ba3411d7, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4443489753264262105, guid: ab0f53f10cd018e03a0ef547ba3411d7, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6291041860756069535, guid: ab0f53f10cd018e03a0ef547ba3411d7, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -2.916809
+      objectReference: {fileID: 0}
+    - target: {fileID: 8557567532147463586, guid: ab0f53f10cd018e03a0ef547ba3411d7, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ab0f53f10cd018e03a0ef547ba3411d7, type: 3}

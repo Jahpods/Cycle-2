@@ -155,6 +155,16 @@ public class GunComponent : MonoBehaviour
             if((Vector3.Distance(heldObj.transform.position, heldArea.position) > 2.1f && heldObjRb.velocity.magnitude < 0.5f)|| 
                 averageVector(heldObj.GetComponent<IGrowable>().scaleFactor) >= pickUpSizeMax){
                 DropObject();
+            }  
+        }
+    }
+
+    void FixedUpdate(){
+        if(heldObj != null){
+            // 
+            if((Vector3.Distance(heldObj.transform.position, heldArea.position) > 2.1f && heldObjRb.velocity.magnitude < 0.5f)|| 
+                averageVector(heldObj.GetComponent<IGrowable>().scaleFactor) >= pickUpSizeMax){
+                DropObject();
             }else{
                 MoveObject();
             }   

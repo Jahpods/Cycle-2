@@ -42,8 +42,8 @@ Material:
     - _ColourThreshold: 0.3
     - _DepthCutoff: 0
     - _DepthThreshold: 0.3
-    - _FogDensity: 0.05
+    - _FogDensity: 0.02
     - _LineThickness: 0
     m_Colors:
-    - _FogColour: {r: 0.8679245, g: 0.81546736, b: 0.70825917, a: 1}
+    - _FogColour: {r: 0.52117383, g: 0.51197046, b: 0.6132076, a: 1}
   m_BuildTextureStacks: []

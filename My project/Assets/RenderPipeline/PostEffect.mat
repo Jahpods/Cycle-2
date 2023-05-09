@@ -39,20 +39,20 @@ Material:
     m_Ints: []
     m_Floats:
     - _Bits: 512
-    - _ColourThreshold: 0.37
+    - _ColourThreshold: 0.44
     - _DepthFallOffRange: 1.48
-    - _DepthThreshold: 0.7
+    - _DepthThreshold: 1.7
     - _Distance: 64.64
     - _DistanceThreshold: 30
     - _FogDensity: 0
-    - _LineThickness: 0.64
+    - _LineThickness: 0.96
     - _Power: 0.01
     - _QueueControl: 0
     - _QueueOffset: 0
     - _SpecularPoster: 0
     - _SpecularStrength: 0
     - _Stripes: 0
-    - _Value: 1.16
+    - _Value: 2.92
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _FogColour: {r: 0.8113208, g: 0.6060884, b: 0.26406196, a: 1}

@@ -3,17 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public class CardboardEnemy : MonoBehaviour, IGrowable, IEnemy
+public class CardboardEnemy : MonoBehaviour, IGrowable, IPickUp
 {
     [SerializeField]
     private GameObject parts;
     [SerializeField]
     private Vector3 sF;
-    private bool isHeld;
     [HideInInspector]
-    public bool Holding{
-        get {return isHeld;}
-        set {isHeld = value;}
+    public bool IsHeld{
+        get;
+        set;
     }
 
     public Vector3 scaleFactor {
@@ -91,7 +90,7 @@ public class CardboardEnemy : MonoBehaviour, IGrowable, IEnemy
         scaleFactor += new Vector3(xGrowth,yGrowth, zGrowth) * Time.deltaTime;*/
     }
     public void Shrink(){
-        if(!isHeld || !poppedOff){
+        if(!IsHeld || !poppedOff){
             Vector3 moveDir = Vector3.Cross(Vector3.up, GameObject.FindGameObjectWithTag("Player").transform.position - transform.position).normalized;
             moveDir = ((rando == 1) ? -1 : 1) * moveDir;
             rb.MovePosition(transform.position + moveDir * Time.deltaTime * 40);

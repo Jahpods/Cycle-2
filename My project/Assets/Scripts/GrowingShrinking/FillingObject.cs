@@ -2,13 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FillingObject : MonoBehaviour, IGrowable
+public class FillingObject : MonoBehaviour, IGrowable, IPickUp
 {
     private Vector3 minScale;
     private Vector3 sF;
     public Vector3 scaleFactor {
         get {return sF;}
         set {sF = value;}
+    }
+    [HideInInspector]
+    public bool IsHeld{
+        get;
+        set;
     }
 
     private Rigidbody rb;

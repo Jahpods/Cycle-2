@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public class GrowingObject : MonoBehaviour, IGrowable
+public class GrowingObject : MonoBehaviour, IGrowable, IPickUp
 {
     [SerializeField]
     private Vector3 minScale = new Vector3(0.2f,0.2f,0.2f);
@@ -13,6 +13,12 @@ public class GrowingObject : MonoBehaviour, IGrowable
         get {return sF;}
         set {sF = value;}
     }
+    [HideInInspector]
+    public bool IsHeld{
+        get;
+        set;
+    }
+
 
     private Rigidbody rb;
 

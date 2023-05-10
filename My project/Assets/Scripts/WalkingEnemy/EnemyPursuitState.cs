@@ -9,8 +9,10 @@ public class EnemyPursuitState : EnemyBaseState
     public override void UpdateState(EnemyManager enemy){
         if(Vector3.Distance(enemy.player.position, enemy.transform.position) > 0.5f){
             Vector3 targetPos = new Vector3(enemy.player.position.x, enemy.transform.position.y, enemy.player.position.z);
-            enemy.transform.forward = (targetPos - enemy.transform.position).normalized;
-            enemy.rb.velocity = (targetPos - enemy.transform.position).normalized * Time.deltaTime * enemy.speed;
+            Vector3 lookDir = (targetPos - enemy.transform.position).normalized;
+            enemy.transform.forward = new Vector3(lookDir.x, 0, lookDir.z);
+            Vector3 dir = (targetPos - enemy.transform.position).normalized * Time.deltaTime * enemy.speed;
+            enemy.rb.velocity = new Vector3(dir.x, enemy.rb.velocity.y, dir.z);
         }
 
         if(Vector3.Distance(enemy.transform.position, enemy.player.position) > enemy.viewRange){

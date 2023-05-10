@@ -2697,6 +2697,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7c093f7f728c262c81daaf8606fd42f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sMoveRange: 20
+  sPosRange: 30
+  sViewRange: 40
+  sSpeed: 500
   moveRange: 4
   posRange: 10
   viewRange: 10

@@ -9,9 +9,18 @@ public class EnemyManager : MonoBehaviour, IGrowable
     public EnemyPursuitState pursuitState = new EnemyPursuitState();
     public EnemyDeadState deadState = new EnemyDeadState();
 
+    public float sMoveRange;
+    public float sPosRange;
+    public float sViewRange;
+    public float sSpeed;
+
+    [HideInInspector]
     public float moveRange;
+    [HideInInspector]
     public float posRange;
+    [HideInInspector]
     public float viewRange;
+    [HideInInspector]
     public float speed;
     [HideInInspector]
     public Vector3 randomPosition;
@@ -49,6 +58,10 @@ public class EnemyManager : MonoBehaviour, IGrowable
     {
         currentState.UpdateState(this);
         transform.localScale = scaleFactor;
+        moveRange = sMoveRange * scaleFactor.magnitude;
+        posRange = sPosRange * scaleFactor.magnitude;
+        viewRange = sViewRange * scaleFactor.magnitude;
+        speed = sSpeed * scaleFactor.magnitude;
     }
 
     void OnCollisionEnter(Collision collision){

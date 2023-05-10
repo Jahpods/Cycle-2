@@ -88,33 +88,33 @@ public class EnemyManager : MonoBehaviour, IGrowable
     }
 
     public void Grow(){
-        float yGrowth = Mathf.Clamp(transform.localScale.y, 1.0f, 5.0f);
-        float xGrowth = Mathf.Clamp(transform.localScale.x, 1.0f, 5.0f);
-        float zGrowth = Mathf.Clamp(transform.localScale.z, 1.0f, 5.0f);
+        float yGrowth = Mathf.Clamp(transform.localScale.y, 1f, 5f);
+        float xGrowth = Mathf.Clamp(transform.localScale.x, 1f, 5f);
+        float zGrowth = Mathf.Clamp(transform.localScale.z, 1f, 5f);
         if((Physics.BoxCast(transform.position, 
                            new Vector3(transform.localScale.x/2, transform.localScale.y/5,transform.localScale.z/2), 
                            transform.up, transform.rotation,
-                           scaleFactor.y/3.2f) &&
+                           scaleFactor.y/3.13f) &&
             Physics.BoxCast(transform.position, 
                            new Vector3(transform.localScale.x/2, transform.localScale.y/5,transform.localScale.z/2), 
                            -transform.up, transform.rotation,
-                           scaleFactor.y/3.2f)) ||
+                           scaleFactor.y/3.13f)) ||
             (Physics.BoxCast(transform.position, 
                            new Vector3(transform.localScale.x/5, transform.localScale.y/2,transform.localScale.z/2), 
                            transform.right, transform.rotation,
-                           scaleFactor.x/3.2f) && 
+                           scaleFactor.x/3.13f) && 
             Physics.BoxCast(transform.position, 
                            new Vector3(transform.localScale.x/5, transform.localScale.y/2,transform.localScale.z/2), 
                            -transform.right, transform.rotation,
-                           scaleFactor.x/3.2f)) ||
+                           scaleFactor.x/3.13f)) ||
             (Physics.BoxCast(transform.position, 
                            new Vector3(transform.localScale.x/2, transform.localScale.y/2,transform.localScale.z/5), 
                            transform.forward, transform.rotation,
-                           scaleFactor.z/3.2f) && 
+                           scaleFactor.z/3.13f) && 
             Physics.BoxCast(transform.position, 
                            new Vector3(transform.localScale.x/2, transform.localScale.y/2,transform.localScale.z/5), 
                            -transform.forward, transform.rotation,
-                           scaleFactor.z/3.2f))){
+                           scaleFactor.z/3.13f))){
             yGrowth = 0;
             xGrowth = 0;
             zGrowth = 0;

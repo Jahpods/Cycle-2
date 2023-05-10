@@ -23,7 +23,7 @@ public class GunComponent : MonoBehaviour
     [SerializeField]
     private Transform shoot;
     [SerializeField]
-    private Image crosshair;
+    private CrosshairManager crosshair;
 
     [SerializeField]
     private MeshRenderer[] mr;
@@ -75,9 +75,7 @@ public class GunComponent : MonoBehaviour
                 ChangeColours(2);
             }
             lr.SetPosition(1, heldObj.transform.position);
-            gun.forward = Vector3.Lerp(gun.forward, heldObj.transform.position - gun.position, Time.deltaTime * 200f);
-            //Handle Crosshair
-            crosshair.color = colours[3];
+            gun.forward = Vector3.Lerp(gun.forward, heldObj.transform.position - gun.position, Time.deltaTime * 200f);            
         }else{
             bool isShooting = false;
             if(Input.GetMouseButton(0)){
@@ -101,13 +99,9 @@ public class GunComponent : MonoBehaviour
             }else{
                 gun.forward = Vector3.Lerp(gun.forward, Camera.main.transform.forward, Time.deltaTime * 1f);
             }
-
-            if(canPickUp()){
-                crosshair.color = colours[4];
-            }else{
-                crosshair.color = colours[5];
-            }
         }
+
+        HandleCursorAppearance();
 
         lr.SetPosition(0, gun.position);
 
@@ -237,5 +231,21 @@ public class GunComponent : MonoBehaviour
         // Does the ray intersect any objects excluding the player layer
         Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, Mathf.Infinity, boxMask);
         return hit;
+    }
+
+    void HandleCursorAppearance(){
+        if(heldObj != null){
+            crosshair.ChangeCursor(CrosshairManager.CrosshairState.Holding);
+            return;
+        }
+        if(canPickUp()){
+            crosshair.ChangeCursor(CrosshairManager.CrosshairState.Something);
+        }else{
+            if(target.collider !=  null && target.transform.GetComponent<IPickUp>() != null && Vector3.Distance(target.point, transform.position) < pickUpRange){
+                crosshair.ChangeCursor(CrosshairManager.CrosshairState.SomethingBig);
+                return;
+            }
+            crosshair.ChangeCursor(CrosshairManager.CrosshairState.Nothing);
+        }
     }
 }

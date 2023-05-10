@@ -10,7 +10,7 @@ public class EnemyPursuitState : EnemyBaseState
         if(Vector3.Distance(enemy.player.position, enemy.transform.position) > 0.5f){
             Vector3 targetPos = new Vector3(enemy.player.position.x, enemy.transform.position.y, enemy.player.position.z);
             enemy.transform.forward = (targetPos - enemy.transform.position).normalized;
-            enemy.transform.position += (targetPos - enemy.transform.position).normalized * Time.deltaTime;
+            enemy.rb.velocity = (targetPos - enemy.transform.position).normalized * Time.deltaTime * enemy.speed;
         }
 
         if(Vector3.Distance(enemy.transform.position, enemy.player.position) > enemy.viewRange){

@@ -10,7 +10,7 @@ public class EnemyWanderState : EnemyBaseState
     public override void UpdateState(EnemyManager enemy){
         if(Vector3.Distance(enemy.randomPosition, enemy.transform.position) > 0.5f){
             enemy.transform.forward = (enemy.randomPosition - enemy.transform.position).normalized;
-            enemy.transform.position += (enemy.randomPosition - enemy.transform.position).normalized * Time.deltaTime;
+            enemy.rb.velocity = (enemy.randomPosition - enemy.transform.position).normalized * Time.deltaTime * enemy.speed;
         }else{
             PickNewPosition(enemy);
         }

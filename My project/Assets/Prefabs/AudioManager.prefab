@@ -57,3 +57,33 @@ MonoBehaviour:
     pitch: 0.25
     loop: 1
     source: {fileID: 0}
+  - name: button
+    clip: {fileID: 8300000, guid: b5030b85dd01843ed8bb74ca13dac351, type: 3}
+    volume: 0.3
+    pitch: 0.6
+    loop: 0
+    source: {fileID: 0}
+  - name: grow
+    clip: {fileID: 8300000, guid: 12e2adf88f3ab5bf699a76e1b81d1bb6, type: 3}
+    volume: 1
+    pitch: 0.6
+    loop: 1
+    source: {fileID: 0}
+  - name: hit1
+    clip: {fileID: 8300000, guid: 1397dd0fb18dbfcdb879784d70c54fc4, type: 3}
+    volume: 0.3
+    pitch: 0.6
+    loop: 0
+    source: {fileID: 0}
+  - name: hit2
+    clip: {fileID: 8300000, guid: 2759a339f641de561811fee457e62ec7, type: 3}
+    volume: 1
+    pitch: 0.6
+    loop: 0
+    source: {fileID: 0}
+  - name: background
+    clip: {fileID: 8300000, guid: 1acba5556ac973d8fbf078169b5c4b59, type: 3}
+    volume: 1
+    pitch: 0.6
+    loop: 0
+    source: {fileID: 0}

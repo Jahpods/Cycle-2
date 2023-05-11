@@ -60,7 +60,7 @@ public class GunComponent : MonoBehaviour
         target = Intersect();
 
         if(Input.GetMouseButton(0) || Input.GetMouseButton(1) || heldObj != null){
-            am.Play("laser");
+            am.Play("laser", 0.4f, 0.7f);
         }else{
             am.Pause("laser");
         }
@@ -111,10 +111,17 @@ public class GunComponent : MonoBehaviour
             GameObject obj = heldObj == null ? target.transform.gameObject : heldObj;
             if(Input.GetMouseButton(0)){
                 obj.transform.GetComponent<IGrowable>().Grow();
+                am.Play("grow", 0.25f);
             }else if(Input.GetMouseButton(1)){
                 obj.transform.GetComponent<IGrowable>().Shrink();
+                am.Play("grow", 0.25f);
+            }else{
+                am.Pause("grow");
             }
-        } 
+            
+        }else{
+                am.Pause("grow");
+        }
 
 
         //Handle Picking Up objects

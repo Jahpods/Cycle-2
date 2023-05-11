@@ -2142,6 +2142,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelTimer
       objectReference: {fileID: 0}
+    - target: {fileID: 750769104250348990, guid: ab0f53f10cd018e03a0ef547ba3411d7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 750769104250348991, guid: ab0f53f10cd018e03a0ef547ba3411d7, type: 3}
       propertyPath: childPos.x
       value: -61.3
@@ -2152,11 +2156,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4443489753264262105, guid: ab0f53f10cd018e03a0ef547ba3411d7, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 0.557
       objectReference: {fileID: 0}
     - target: {fileID: 4443489753264262105, guid: ab0f53f10cd018e03a0ef547ba3411d7, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ab0f53f10cd018e03a0ef547ba3411d7, type: 3}

@@ -51,6 +51,8 @@ void AddAdditionalLights_float(float3 WorldPosition, float3 WorldNormal,
     LightMap = float3(0,0,0);
 
 #ifndef SHADERGRAPH_PREVIEW
+    float highestDiffuse = Diffuse;
+
     int pixelLightCount = GetAdditionalLightsCount();
     for (int i = 0; i < pixelLightCount; ++i) {
         Light light = GetAdditionalLight(i, WorldPosition);
@@ -58,10 +60,17 @@ void AddAdditionalLights_float(float3 WorldPosition, float3 WorldNormal,
         half atten = light.distanceAttenuation * light.shadowAttenuation * GetLightIntensity(light.color);
         half thisDiffuse = atten * NdotL;
         Diffuse += thisDiffuse;
-        Color = light.color * thisDiffuse;
-        LightMap = thisDiffuse > 0 ? float3(1,1,1) : float3(0,0,0);        
+        
+        
+
+        if(thisDiffuse > highestDiffuse){
+            highestDiffuse = thisDiffuse;
+            LightMap = thisDiffuse > 0 ? float3(1,1,1) : float3(0,0,0);
+            Color = light.color * thisDiffuse;
+        }        
     }
 #endif
+    //Color = Color == float3(1,1,1) ? float3(0,0,0) : Color;
 }
 
 #endif

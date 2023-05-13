@@ -23,7 +23,7 @@ public class GunComponent : MonoBehaviour
     [SerializeField]
     private Transform shoot;
     [SerializeField]
-    private Image crosshair;
+    private CrosshairManager crosshair;
 
     [SerializeField]
     private MeshRenderer[] mr;
@@ -60,7 +60,7 @@ public class GunComponent : MonoBehaviour
         target = Intersect();
 
         if(Input.GetMouseButton(0) || Input.GetMouseButton(1) || heldObj != null){
-            am.Play("laser");
+            am.Play("laser", 0.4f, 0.7f);
         }else{
             am.Pause("laser");
         }
@@ -75,9 +75,7 @@ public class GunComponent : MonoBehaviour
                 ChangeColours(2);
             }
             lr.SetPosition(1, heldObj.transform.position);
-            gun.forward = Vector3.Lerp(gun.forward, heldObj.transform.position - gun.position, Time.deltaTime * 200f);
-            //Handle Crosshair
-            crosshair.color = colours[3];
+            gun.forward = Vector3.Lerp(gun.forward, heldObj.transform.position - gun.position, Time.deltaTime * 200f);            
         }else{
             bool isShooting = false;
             if(Input.GetMouseButton(0)){
@@ -101,13 +99,9 @@ public class GunComponent : MonoBehaviour
             }else{
                 gun.forward = Vector3.Lerp(gun.forward, Camera.main.transform.forward, Time.deltaTime * 1f);
             }
-
-            if(canPickUp()){
-                crosshair.color = colours[4];
-            }else{
-                crosshair.color = colours[5];
-            }
         }
+
+        HandleCursorAppearance();
 
         lr.SetPosition(0, gun.position);
 
@@ -117,10 +111,17 @@ public class GunComponent : MonoBehaviour
             GameObject obj = heldObj == null ? target.transform.gameObject : heldObj;
             if(Input.GetMouseButton(0)){
                 obj.transform.GetComponent<IGrowable>().Grow();
+                am.Play("grow", 0.25f);
             }else if(Input.GetMouseButton(1)){
                 obj.transform.GetComponent<IGrowable>().Shrink();
+                am.Play("grow", 0.25f);
+            }else{
+                am.Pause("grow");
             }
-        } 
+            
+        }else{
+                am.Pause("grow");
+        }
 
 
         //Handle Picking Up objects
@@ -155,6 +156,16 @@ public class GunComponent : MonoBehaviour
             if((Vector3.Distance(heldObj.transform.position, heldArea.position) > 2.1f && heldObjRb.velocity.magnitude < 0.5f)|| 
                 averageVector(heldObj.GetComponent<IGrowable>().scaleFactor) >= pickUpSizeMax){
                 DropObject();
+            }  
+        }
+    }
+
+    void FixedUpdate(){
+        if(heldObj != null){
+            // 
+            if((Vector3.Distance(heldObj.transform.position, heldArea.position) > 2.1f && heldObjRb.velocity.magnitude < 0.5f)|| 
+                averageVector(heldObj.GetComponent<IGrowable>().scaleFactor) >= pickUpSizeMax){
+                DropObject();
             }else{
                 MoveObject();
             }   
@@ -174,7 +185,7 @@ public class GunComponent : MonoBehaviour
     }
 
     bool canPickUp(){
-        if(target.collider !=  null && (target.collider.CompareTag("GrowingObject") || target.collider.CompareTag("Enemy"))){
+        if(target.collider !=  null && target.transform.GetComponent<IPickUp>() != null){
             return (Vector3.Distance(target.point, transform.position) < pickUpRange && 
                 averageVector(target.transform.GetComponent<IGrowable>().scaleFactor) < pickUpSizeMax);
         }else{
@@ -185,9 +196,7 @@ public class GunComponent : MonoBehaviour
 
     void PickUpObject(GameObject pickObj){
         if(heldObj == null){
-            if(pickObj.CompareTag("Enemy")){
-                pickObj.GetComponent<IEnemy>().Holding = true;  
-            }
+            pickObj.GetComponent<IPickUp>().IsHeld = true;
             pickObj.GetComponent<Collider>().material = pm[0];
             Physics.IgnoreCollision(pickObj.GetComponent<Collider>(), GetComponent<Collider>(), true);
             heldObjRb = pickObj.GetComponent<Rigidbody>();
@@ -200,9 +209,7 @@ public class GunComponent : MonoBehaviour
     }
 
     void DropObject(){
-        if(heldObj.CompareTag("Enemy")){
-            heldObj.GetComponent<IEnemy>().Holding = false;
-        }
+        heldObj.GetComponent<IPickUp>().IsHeld = false;
         heldObj.GetComponent<Collider>().material = pm[1];
         Physics.IgnoreCollision(heldObj.GetComponent<Collider>(), GetComponent<Collider>(), false);
         heldObjRb.useGravity = true;
@@ -231,5 +238,21 @@ public class GunComponent : MonoBehaviour
         // Does the ray intersect any objects excluding the player layer
         Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, Mathf.Infinity, boxMask);
         return hit;
+    }
+
+    void HandleCursorAppearance(){
+        if(heldObj != null){
+            crosshair.ChangeCursor(CrosshairManager.CrosshairState.Holding);
+            return;
+        }
+        if(canPickUp()){
+            crosshair.ChangeCursor(CrosshairManager.CrosshairState.Something);
+        }else{
+            if(target.collider !=  null && target.transform.GetComponent<IPickUp>() != null && Vector3.Distance(target.point, transform.position) < pickUpRange){
+                crosshair.ChangeCursor(CrosshairManager.CrosshairState.SomethingBig);
+                return;
+            }
+            crosshair.ChangeCursor(CrosshairManager.CrosshairState.Nothing);
+        }
     }
 }

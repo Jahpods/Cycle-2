@@ -40,8 +40,6 @@ public class PlayerMovement : MonoBehaviour
     private float sensitivityX;
     [SerializeField]
     private float sensitivityY;
-    [SerializeField]
-    private Vector2Int stepCount;
     private Vector2 mouseVector;
     private float cameraVerticalRotation;
 
@@ -166,13 +164,13 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate(){
         //Vertical Rotation
-        cameraVerticalRotation -= mouseVector.y * sensitivityY - stepCount.y/2.01f;
-        cameraVerticalRotation = Mathf.Clamp(Mathf.Floor(cameraVerticalRotation/stepCount.y)*stepCount.y,-80,80);
+        cameraVerticalRotation -= mouseVector.y * sensitivityY;
+        cameraVerticalRotation = Mathf.Clamp(cameraVerticalRotation,-80,80);
 
         ch.localEulerAngles = Vector3.right * cameraVerticalRotation;
 
         //Horizontal Rotation
-        transform.Rotate(Vector3.up * Mathf.Floor((mouseVector.x * sensitivityX + stepCount.x/2.01f) / stepCount.x) * stepCount.x);
+        transform.Rotate(Vector3.up * mouseVector.x * sensitivityX);
 
         //Apply Gravity
         if(IsGrounded() && rb.velocity.y <= 0){

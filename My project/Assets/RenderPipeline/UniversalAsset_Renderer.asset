@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35f0e542ea2aaa641a079aab59942a1d, type: 3}
   m_Name: Fog
   m_EditorClassIdentifier: 
-  m_Active: 1
+  m_Active: 0
   settings:
     material: {fileID: 2100000, guid: 00085b6fc94130e7a96d3dd0497372e6, type: 2}
     materialPassIndex: 0
@@ -46,10 +46,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35f0e542ea2aaa641a079aab59942a1d, type: 3}
   m_Name: PixelOutline
   m_EditorClassIdentifier: 
-  m_Active: 1
+  m_Active: 0
   settings:
     material: {fileID: 2100000, guid: 64f59372097c7e6579628e06981dc1a0, type: 2}
-    materialPassIndex: -1
+    materialPassIndex: 0
     renderEvent: 550
 --- !u!114 &11400000
 MonoBehaviour:

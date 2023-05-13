@@ -3,16 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public class GrowingObject : MonoBehaviour, IGrowable
+public class GrowingObject : MonoBehaviour, IGrowable, IPickUp
 {
-    [SerializeField]
-    private Vector3 minScale = new Vector3(0.2f,0.2f,0.2f);
-    [SerializeField]
-    private Vector3 sF;
+    private Vector3 minScale;
+    
     public Vector3 scaleFactor {
-        get {return sF;}
-        set {sF = value;}
+        get;
+        set;
     }
+    [HideInInspector]
+    public bool IsHeld{
+        get;
+        set;
+    }
+
 
     private Rigidbody rb;
 
@@ -64,14 +68,16 @@ public class GrowingObject : MonoBehaviour, IGrowable
     }
     public void Shrink(){
         scaleFactor -= transform.localScale * Time.deltaTime;
+        Vector3 min = scaleFactor;
         if(scaleFactor.x < minScale.x){
-            sF.x = minScale.x;
+            min.x = minScale.x;
         }
         if(scaleFactor.y < minScale.y){
-            sF.y = minScale.y;
+            min.y = minScale.y;
         }
         if(scaleFactor.z < minScale.z){
-            sF.z = minScale.z;
+            min.z = minScale.z;
         }
+        scaleFactor = min;
     }
 }

@@ -16,7 +16,11 @@ public class BtnLogic : MonoBehaviour
     private Color[] colours;
     private bool btnPressed;
     private Vector3 doorPos;
+    private AudioManager am;
     void OnTriggerStay(Collider other){
+        if(btnPressed == false){
+            am.Play("button");
+        }
         if(other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("GrowingObject")){
             btnPressed = true;
         }
@@ -29,6 +33,7 @@ public class BtnLogic : MonoBehaviour
     }
 
     void Start(){
+        am = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
         doorPos = door.localPosition;
     }
 

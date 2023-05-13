@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.SceneManagement;
 
 public class AudioManager : MonoBehaviour
 {
@@ -40,15 +41,24 @@ public class AudioManager : MonoBehaviour
 	}
 
 	void Start(){
-		Play("Menu");
+		foreach(Sound s in sounds){
+			Pause(s.name);
+		}
+		Play("Menu", 0.05f);
+		if(SceneManager.GetActiveScene().name == "FirstLevel"){
+			Play("background", 0.04f);
+		}
 	}
 
-	public void Play(string name){
+	public void Play(string name, float vol = 0.5f, float pit = 1f){
 		Sound s = Array.Find(sounds, sound => sound.name == name);
 		if(s == null){
 			Debug.LogWarning("Sound " + name + " was not found");
 			return;
 		}
+		if(s.source.isPlaying == true) return;
+		s.source.volume = vol;
+		s.source.pitch = pit;
 		s.source.Play();
 	}
 

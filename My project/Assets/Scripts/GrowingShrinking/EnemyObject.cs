@@ -3,17 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public class EnemyObject : MonoBehaviour, IGrowable, IEnemy
+public class EnemyObject : MonoBehaviour, IGrowable, IPickUp
 {
     [SerializeField]
     private GameObject parts;
     [SerializeField]
     private Vector3 sF;
-    private bool isHeld;
     [HideInInspector]
-    public bool Holding{
-        get {return isHeld;}
-        set {isHeld = value;}
+    public bool IsHeld{
+        get;
+        set;
     }
 
     public Vector3 scaleFactor {
@@ -31,6 +30,7 @@ public class EnemyObject : MonoBehaviour, IGrowable, IEnemy
     void Start(){
         enemyPosition = transform.position;
         rb = GetComponent<Rigidbody>();
+        rb.useGravity = false;
         scaleFactor = transform.localScale;
         playerTf = GameObject.FindGameObjectWithTag("Player").transform;
     }
@@ -40,38 +40,20 @@ public class EnemyObject : MonoBehaviour, IGrowable, IEnemy
         transform.localScale = scaleFactor;
 
         rb.useGravity = false;
-
-        if(!isHeld && !shrinking){
-            Vector3 direction = enemyPosition - transform.position;
-            if(Vector3.Distance(transform.position, enemyPosition) > 0.05){
-                if(Vector3.Dot(rb.velocity, direction) < 0){
-                    rb.velocity -= rb.velocity.normalized * 20f * Time.deltaTime;
-                }else{
-                    if(direction.magnitude > 1){
-                        rb.MovePosition(transform.position + direction.normalized * Time.deltaTime * 20f); 
-                    }else{
-                        rb.MovePosition(transform.position + direction * Time.deltaTime * 15f); 
-                    }
-                    
-                }   
-            }else{
-                transform.position = enemyPosition;
-                rb.velocity = Vector3.zero;
-            }
-
-        } 
-
-
-        /*if(!shrinking){
-            rando = Random.Range(0,2);
-            if(Vector3.Distance(transform.position, enemyPosition) > 1f){
-                rb.MovePosition(transform.position + (enemyPosition - transform.position) * Time.deltaTime * 4);
-            }
-        }else{
-            shrinking = false;
-        }*/
         
         transform.LookAt(playerTf);
+    }
+
+    void FixedUpdate(){
+        if(!IsHeld && !shrinking){
+            Vector3 direction = enemyPosition - transform.position;
+            if(Vector3.Dot(direction, rb.velocity) < 0.1f){
+                rb.velocity -= rb.velocity * 0.3f;
+            }else{
+                rb.velocity = Vector3.zero;
+            }
+            transform.position = Vector3.Lerp(transform.position, enemyPosition, 0.05f);
+        }
     }
 
     public void Grow(){
@@ -111,7 +93,7 @@ public class EnemyObject : MonoBehaviour, IGrowable, IEnemy
     }
     public void Shrink(){
         shrinking = true;
-        if(!isHeld){
+        if(!IsHeld){
             Vector3 moveDir = Vector3.Cross(Vector3.up, GameObject.FindGameObjectWithTag("Player").transform.position - transform.position).normalized;
             moveDir = ((rando == 1) ? -1 : 1) * moveDir;
             rb.MovePosition(transform.position + moveDir * Time.deltaTime * 40);
@@ -120,6 +102,7 @@ public class EnemyObject : MonoBehaviour, IGrowable, IEnemy
             if(scaleFactor.x < 0.1f || scaleFactor.y < 0.1f || scaleFactor.z < 0.1f){
                 Instantiate(parts, transform.position, Quaternion.identity);
                 GameObject.FindGameObjectWithTag("Volume").GetComponent<EditLook>().UpdateLook();
+                GameObject.FindGameObjectWithTag("Time").GetComponent<TimerLogic>().EnemyDies();
                 Destroy(gameObject);
             }
         }

@@ -55,17 +55,18 @@ void AddAdditionalLights_float(float3 WorldPosition, float3 WorldNormal,
 
     int pixelLightCount = GetAdditionalLightsCount();
     for (int i = 0; i < pixelLightCount; ++i) {
-        Light light = GetAdditionalLight(i, WorldPosition);
+        Light light = GetAdditionalLight(i, WorldPosition, half4(1,1,1,1));
         half NdotL = saturate(dot(WorldNormal, light.direction));
         half atten = light.distanceAttenuation * light.shadowAttenuation * GetLightIntensity(light.color);
         half thisDiffuse = atten * NdotL;
         Diffuse += thisDiffuse;
+        //Diffuse = light.shadowAttenuation;
         
         
 
         if(thisDiffuse > highestDiffuse){
             highestDiffuse = thisDiffuse;
-            LightMap = thisDiffuse > 0 ? float3(1,1,1) : float3(0,0,0);
+            LightMap = thisDiffuse > 0.1 ? float3(1,1,1) : float3(0,0,0);
             Color = light.color * thisDiffuse;
         }        
     }

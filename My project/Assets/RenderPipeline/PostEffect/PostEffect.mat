@@ -38,7 +38,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Bits: 512
+    - _Bits: 256
     - _ColourThreshold: 10
     - _DepthFallOffRange: 1.48
     - _DepthThreshold: 0.3

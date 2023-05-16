@@ -34,13 +34,13 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _FadeStrength: 5
-    - _Power: 3.65
+    - _FadeStrength: 0.5
+    - _Power: 1.14
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Sensitivity: 0.61
+    - _Sensitivity: 0.56
     - _WaveSpeed: 0.54
-    - _fresnelPower: 5
+    - _fresnelPower: 0.5
     m_Colors:
     - _IntersectionColor: {r: 0, g: 0.5247078, b: 1, a: 1}
     - _WallColor: {r: 1, g: 1, b: 1, a: 1}

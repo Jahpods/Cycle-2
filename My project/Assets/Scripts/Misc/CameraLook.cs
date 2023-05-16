@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CameraLook : MonoBehaviour
 {
+    [SerializeField]
+    private float moveDist;
     Vector2 mousePosition;
     // Start is called before the first frame update
     void Start()
@@ -16,6 +18,6 @@ public class CameraLook : MonoBehaviour
     {
         mousePosition = Input.mousePosition;
 
-        transform.position = new Vector3(Mathf.Lerp(-1.0f, 1.0f, mousePosition.x/Screen.width), Mathf.Lerp(-1.0f, 1.0f, mousePosition.y/Screen.height), 0);
+        transform.position = new Vector3(Mathf.Lerp(-moveDist, moveDist, mousePosition.x/Screen.width), Mathf.Lerp(-moveDist, moveDist, mousePosition.y/Screen.height), 0);
     }
 }

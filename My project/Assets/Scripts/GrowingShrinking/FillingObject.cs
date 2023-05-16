@@ -42,7 +42,6 @@ public class FillingObject : MonoBehaviour, IGrowable, IPickUp
                            new Vector3(transform.localScale.x/2, transform.localScale.y/5,transform.localScale.z/2), 
                            -transform.up, transform.rotation,
                            scaleFactor.y / boundary)){
-            Debug.Log("Blocked");
         }
     }
 

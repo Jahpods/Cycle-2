@@ -46,6 +46,9 @@ public class GunComponent : MonoBehaviour
     [SerializeField]
     private PhysicMaterial[] pm;
 
+    private float dropCooldown;
+    private float startDropCooldown = 0.2f;
+
     private AudioManager am;
 
     void Start(){
@@ -56,56 +59,16 @@ public class GunComponent : MonoBehaviour
     void Update()
     {
         //lr.SetPosition(1,shoot.position);
-        lr.SetPosition(1,gun.position);
         target = Intersect();
 
-        if(Input.GetMouseButton(0) || Input.GetMouseButton(1) || heldObj != null){
-            am.Play("laser", 0.4f, 0.7f);
-        }else{
-            am.Pause("laser");
-        }
+        HandleGunSound();
 
-        //Handle Visuals
-        if(heldObj != null){
-            if(Input.GetMouseButton(0)){
-                ChangeColours(0);
-            }else if(Input.GetMouseButton(1)){
-                ChangeColours(1);
-            }else{
-                ChangeColours(2);
-            }
-            lr.SetPosition(1, heldObj.transform.position);
-            gun.forward = Vector3.Lerp(gun.forward, heldObj.transform.position - gun.position, Time.deltaTime * 200f);            
-        }else{
-            bool isShooting = false;
-            if(Input.GetMouseButton(0)){
-                ChangeColours(0);;
-                isShooting = true;
-            }else if(Input.GetMouseButton(1)){
-                ChangeColours(1);
-                isShooting = true;
-            }
-
-            if(isShooting){
-                if(target.collider != null){
-                    lr.SetPosition(1, target.point);
-                    gun.forward = target.point - gun.position;
-                }else{
-                    Vector3 dir = Camera.main.transform.position + Camera.main.transform.forward * 100f;
-                    lr.SetPosition(1, dir);
-                    gun.forward = dir - gun.position;
-                }
-
-            }else{
-                gun.forward = Vector3.Lerp(gun.forward, Camera.main.transform.forward, Time.deltaTime * 1f);
-            }
-        }
+        HandleLaserAppearance();
 
         HandleCursorAppearance();
 
-        lr.SetPosition(0, gun.position);
 
-        //Handle Gun Shooting
+        //Handle Gun Shooting Effects
         if((target.collider != null && (target.collider.gameObject.CompareTag("GrowingObject") || target.collider.gameObject.CompareTag("Enemy"))) || heldObj != null){
             //Handle Growing and Shrinking of Objects
             GameObject obj = heldObj == null ? target.transform.gameObject : heldObj;
@@ -150,25 +113,34 @@ public class GunComponent : MonoBehaviour
             heldArea.localPosition = heldPosition;
         }
 
-        //Moving Picked Up Objects
+        //Handle Dropping Picked Up Objects
         if(heldObj != null){
-            // 
+            // If object has stopped moving and is too far away from target
             if((Vector3.Distance(heldObj.transform.position, heldArea.position) > 2.1f && heldObjRb.velocity.magnitude < 0.5f)|| 
                 averageVector(heldObj.GetComponent<IGrowable>().scaleFactor) >= pickUpSizeMax){
-                DropObject();
+                if(dropCooldown <= 0){
+                    //Drop the object
+                    DropObject();
+                } 
             }  
         }
+        if(dropCooldown > 0){
+            dropCooldown -= Time.deltaTime;
+        }       
     }
 
     void FixedUpdate(){
         if(heldObj != null){
-            // 
-            if((Vector3.Distance(heldObj.transform.position, heldArea.position) > 2.1f && heldObjRb.velocity.magnitude < 0.5f)|| 
+            //
+            MoveObject();
+            /*if((Vector3.Distance(heldObj.transform.position, heldArea.position) > 2.1f && heldObjRb.velocity.magnitude < 0.5f)|| 
                 averageVector(heldObj.GetComponent<IGrowable>().scaleFactor) >= pickUpSizeMax){
-                DropObject();
+                if(dropCooldown <= 0){
+                    DropObject();
+                }       
             }else{
-                MoveObject();
-            }   
+                
+            } */
         }
     }
 
@@ -196,6 +168,7 @@ public class GunComponent : MonoBehaviour
 
     void PickUpObject(GameObject pickObj){
         if(heldObj == null){
+            dropCooldown = startDropCooldown;
             pickObj.GetComponent<IPickUp>().IsHeld = true;
             pickObj.GetComponent<Collider>().material = pm[0];
             Physics.IgnoreCollision(pickObj.GetComponent<Collider>(), GetComponent<Collider>(), true);
@@ -220,6 +193,8 @@ public class GunComponent : MonoBehaviour
     }
 
     void MoveObject(){
+        Vector3 lookDir = new Vector3(transform.position.x, 0, transform.position.z) - new Vector3(heldObj.transform.position.x, 0, heldObj.transform.position.z);
+        heldObj.transform.forward =  Vector3.Lerp(heldObj.transform.forward, lookDir, 0.05f);
         if(Vector3.Distance(heldObj.transform.position, heldArea.position) > 0.1f){
             Vector3 moveDir = heldArea.position - heldObj.transform.position;
             heldObjRb.AddForce(moveDir * pickUpStrength);
@@ -254,5 +229,55 @@ public class GunComponent : MonoBehaviour
             }
             crosshair.ChangeCursor(CrosshairManager.CrosshairState.Nothing);
         }
+    }
+
+    void HandleGunSound(){
+        if(Input.GetMouseButton(0) || Input.GetMouseButton(1) || heldObj != null){
+            am.Play("laser", 0.4f, 0.7f);
+        }else{
+            am.Pause("laser");
+        }
+    }
+
+    void HandleLaserAppearance(){
+        lr.SetPosition(1,gun.position);
+
+        //Handle Visuals
+        if(heldObj != null){
+            if(Input.GetMouseButton(0)){
+                ChangeColours(0);
+            }else if(Input.GetMouseButton(1)){
+                ChangeColours(1);
+            }else{
+                ChangeColours(2);
+            }
+            lr.SetPosition(1, heldObj.transform.position);
+            gun.forward = Vector3.Lerp(gun.forward, heldObj.transform.position - gun.position, Time.deltaTime * 200f);            
+        }else{
+            bool isShooting = false;
+            if(Input.GetMouseButton(0)){
+                ChangeColours(0);;
+                isShooting = true;
+            }else if(Input.GetMouseButton(1)){
+                ChangeColours(1);
+                isShooting = true;
+            }
+
+            if(isShooting){
+                if(target.collider != null){
+                    lr.SetPosition(1, target.point);
+                    gun.forward = target.point - gun.position;
+                }else{
+                    Vector3 dir = Camera.main.transform.position + Camera.main.transform.forward * 100f;
+                    lr.SetPosition(1, dir);
+                    gun.forward = dir - gun.position;
+                }
+
+            }else{
+                gun.forward = Vector3.Lerp(gun.forward, Camera.main.transform.forward, Time.deltaTime * 1f);
+            }
+        }
+
+        lr.SetPosition(0, gun.position);
     }
 }

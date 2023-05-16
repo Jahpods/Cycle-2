@@ -174,7 +174,7 @@ public class PlayerMovement : MonoBehaviour
 
         //Apply Gravity
         if(IsGrounded() && rb.velocity.y <= 0){
-            rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
+            //rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
         }else{
             rb.velocity += Vector3.down * Gravity;       
         }

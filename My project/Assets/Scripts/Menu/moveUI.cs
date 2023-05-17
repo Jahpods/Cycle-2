@@ -11,7 +11,7 @@ public class moveUI : MonoBehaviour
 
     void Start(){
         targetPosition = transform.position;
-        newPosition = targetPosition + Vector3.up * 200f;
+        newPosition = targetPosition + Vector3.up * Screen.height * 0.15f;
     }
 
     void FixedUpdate(){

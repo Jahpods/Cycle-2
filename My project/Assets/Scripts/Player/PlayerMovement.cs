@@ -37,9 +37,7 @@ public class PlayerMovement : MonoBehaviour
     //Setup Looking Variables
     [Header("Mouse")]
     [SerializeField]
-    private float sensitivityX;
-    [SerializeField]
-    private float sensitivityY;
+    private float sensitivity;
     private Vector2 mouseVector;
     private float cameraVerticalRotation;
 
@@ -164,13 +162,13 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate(){
         //Vertical Rotation
-        cameraVerticalRotation -= mouseVector.y * sensitivityY;
+        cameraVerticalRotation -= mouseVector.y * sensitivity;
         cameraVerticalRotation = Mathf.Clamp(cameraVerticalRotation,-80,80);
 
         ch.localEulerAngles = Vector3.right * cameraVerticalRotation;
 
         //Horizontal Rotation
-        transform.Rotate(Vector3.up * mouseVector.x * sensitivityX);
+        transform.Rotate(Vector3.up * mouseVector.x * sensitivity);
 
         //Apply Gravity
         if(IsGrounded() && rb.velocity.y <= 0){
@@ -215,12 +213,11 @@ public class PlayerMovement : MonoBehaviour
     }
 
     public float GetSens(){
-        return sensitivityX;
+        return sensitivity;
     }
 
     public void SetSens(float sens){
-        sensitivityX = sens;
-        sensitivityY = sens;
+        sensitivity = sens;
     }
 
     private void ChangeAnimationState(string newState){

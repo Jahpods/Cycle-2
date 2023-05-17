@@ -47,7 +47,7 @@ MonoBehaviour:
   sounds:
   - name: Menu
     clip: {fileID: 8300000, guid: b339eab8687f844e4a0fae5a1e9e6983, type: 3}
-    volume: 0.13
+    volume: 0.05
     pitch: 1
     loop: 1
     source: {fileID: 0}
@@ -95,6 +95,36 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: plush2
     clip: {fileID: 8300000, guid: 225a6f8d9065e1500acbbec5d0af8ce7, type: 3}
+    volume: 1
+    pitch: 0.6
+    loop: 0
+    source: {fileID: 0}
+  - name: laugh1
+    clip: {fileID: 8300000, guid: 64a139fb659ac687987e1627fb090802, type: 3}
+    volume: 1
+    pitch: 0.6
+    loop: 0
+    source: {fileID: 0}
+  - name: laugh2
+    clip: {fileID: 8300000, guid: af3a0f374b33ad78f9b2129226f2dd8a, type: 3}
+    volume: 1
+    pitch: 0.6
+    loop: 0
+    source: {fileID: 0}
+  - name: laugh3
+    clip: {fileID: 8300000, guid: 3cff6e70070cdda1d8539f765a458d34, type: 3}
+    volume: 1
+    pitch: 0.6
+    loop: 0
+    source: {fileID: 0}
+  - name: laugh4
+    clip: {fileID: 8300000, guid: cb63b362e7c6b5c1496e735b03a42e04, type: 3}
+    volume: 1
+    pitch: 0.6
+    loop: 0
+    source: {fileID: 0}
+  - name: dies
+    clip: {fileID: 8300000, guid: 6acf003f9e68cd4d3a14931a2d8be824, type: 3}
     volume: 1
     pitch: 0.6
     loop: 0

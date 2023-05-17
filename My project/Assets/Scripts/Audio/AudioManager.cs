@@ -11,6 +11,7 @@ public class AudioManager : MonoBehaviour
 	private Sound[] sounds;
 
 	public static AudioManager instance;
+	private float globalVolume = 1f;
 
 	void Awake(){
 		Cursor.visible = false;
@@ -34,6 +35,17 @@ public class AudioManager : MonoBehaviour
 		}
 	}
 
+	public float GetGlobalVolume(){
+		return globalVolume;
+	}
+
+	public void SetGlobalVolume(float value){
+		globalVolume = value;
+		foreach(Sound s in sounds){
+			s.source.volume = s.volume * value;
+		}		
+	}
+
 	void Update(){
 		if (Input.GetKey(KeyCode.Asterisk)){
             Application.Quit();
@@ -44,20 +56,22 @@ public class AudioManager : MonoBehaviour
 		foreach(Sound s in sounds){
 			Pause(s.name);
 		}
-		Play("Menu", 0.05f);
+		Play("Menu");
 		if(SceneManager.GetActiveScene().name == "FirstLevel"){
 			//Play("background", 0.04f);
 		}
 	}
 
-	public void Play(string name, float vol = 0.5f, float pit = 1f){
+	public void Play(string name, float vol = -1, float pit = -1f){
 		Sound s = Array.Find(sounds, sound => sound.name == name);
 		if(s == null){
 			Debug.LogWarning("Sound " + name + " was not found");
 			return;
 		}
 		if(s.source.isPlaying == true) return;
-		s.source.volume = vol;
+		if(vol == -1) vol = s.volume;
+		if(pit == -1) pit = s.pitch;
+		s.source.volume = vol * globalVolume;
 		s.source.pitch = pit;
 		s.source.Play();
 	}

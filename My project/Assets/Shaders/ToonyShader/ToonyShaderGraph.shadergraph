@@ -5,9 +5,6 @@
     "m_Properties": [
         {
             "m_Id": "4efab04ef0504e90950c46dc7662b82a"
-        },
-        {
-            "m_Id": "c29c2da77bc44840b606c7e3350b74ee"
         }
     ],
     "m_Keywords": [],
@@ -1570,33 +1567,6 @@
 }
 
 {
-    "m_SGVersion": 1,
-    "m_Type": "UnityEditor.ShaderGraph.Internal.Vector1ShaderProperty",
-    "m_ObjectId": "c29c2da77bc44840b606c7e3350b74ee",
-    "m_Guid": {
-        "m_GuidSerialized": "9bb7f3e0-c8dd-4aa3-84ba-fde9a1dc7f59"
-    },
-    "m_Name": "ShadowPos",
-    "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "ShadowPos",
-    "m_DefaultReferenceName": "_ShadowPos",
-    "m_OverrideReferenceName": "",
-    "m_GeneratePropertyBlock": true,
-    "m_UseCustomSlotLabel": false,
-    "m_CustomSlotLabel": "",
-    "m_Precision": 0,
-    "overrideHLSLDeclaration": false,
-    "hlslDeclarationOverride": 0,
-    "m_Hidden": false,
-    "m_Value": 0.5,
-    "m_FloatType": 1,
-    "m_RangeValues": {
-        "x": 0.009999999776482582,
-        "y": 1.0
-    }
-}
-
-{
     "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.DynamicVectorMaterialSlot",
     "m_ObjectId": "c3449000212642cebc6da1a7a891ca16",
@@ -1798,9 +1768,6 @@
     "m_ChildObjectList": [
         {
             "m_Id": "4efab04ef0504e90950c46dc7662b82a"
-        },
-        {
-            "m_Id": "c29c2da77bc44840b606c7e3350b74ee"
         }
     ]
 }

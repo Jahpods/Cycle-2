@@ -27,8 +27,13 @@ public class EnemyObject : MonoBehaviour, IGrowable, IPickUp
     private int rando;
     private Transform playerTf;
 
+    private AudioManager am;
+    private float startLaughCooldown = 0.6f;
+    private float laughCooldown;
+
     void Start(){
         enemyPosition = transform.position;
+        am = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
         rb = GetComponent<Rigidbody>();
         rb.useGravity = false;
         scaleFactor = transform.localScale;
@@ -93,7 +98,7 @@ public class EnemyObject : MonoBehaviour, IGrowable, IPickUp
     }
     public void Shrink(){
         shrinking = true;
-        if(!IsHeld){
+        /*if(!IsHeld){
             Vector3 moveDir = Vector3.Cross(Vector3.up, GameObject.FindGameObjectWithTag("Player").transform.position - transform.position).normalized;
             moveDir = ((rando == 1) ? -1 : 1) * moveDir;
             rb.MovePosition(transform.position + moveDir * Time.deltaTime * 40);
@@ -105,7 +110,41 @@ public class EnemyObject : MonoBehaviour, IGrowable, IPickUp
                 GameObject.FindGameObjectWithTag("Time").GetComponent<TimerLogic>().EnemyDies();
                 Destroy(gameObject);
             }
+        }*/
+        if(laughCooldown > 0){
+            laughCooldown -= Time.deltaTime;
         }
 
+        if(!IsHeld){
+            if(laughCooldown <= 0){
+                RandomSound();
+                laughCooldown = startLaughCooldown + Random.Range(0, 1f);
+            }
+            return;
+        }
+
+        scaleFactor -= transform.localScale * Time.deltaTime;
+        if(scaleFactor.x < 0.1f || scaleFactor.y < 0.1f || scaleFactor.z < 0.1f){
+            Instantiate(parts, transform.position, Quaternion.identity);
+            GameObject.FindGameObjectWithTag("Volume").GetComponent<EditLook>().UpdateLook();
+            GameObject.FindGameObjectWithTag("Time").GetComponent<TimerLogic>().EnemyDies();
+            am.Play("dies");
+            Destroy(gameObject);
+        }
+
+    }
+
+    void RandomSound(){
+        float pitch = Random.Range(0.8f, 1.5f);
+        int randSound = Random.Range(0,4);
+        if(randSound == 0){
+            am.Play("laugh1", 0.3f, pitch);
+        }else if(randSound == 1){
+            am.Play("laugh2", 0.3f, pitch);
+        }else if(randSound == 2){
+            am.Play("laugh3", 0.3f, pitch);
+        }else if(randSound == 3){
+            am.Play("laugh4", 0.3f, pitch);
+        }
     }
 }

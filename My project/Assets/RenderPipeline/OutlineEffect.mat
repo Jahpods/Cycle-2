@@ -40,7 +40,7 @@ Material:
     m_Ints: []
     m_Floats:
     - REQUIRE_DEPTH_TEXTURE: 1
-    - _Bits: 512
+    - _Bits: 256
     - _ColourThreshold: 0.68
     - _DThreshold: 0.24
     - _DepthStrength: 66.24

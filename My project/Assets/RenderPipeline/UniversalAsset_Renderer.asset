@@ -66,10 +66,10 @@ MonoBehaviour:
   debugShaders:
     debugReplacementPS: {fileID: 4800000, guid: cf852408f2e174538bcd9b7fda1c5ae7, type: 3}
   m_RendererFeatures:
+  - {fileID: 4260894987402040408}
   - {fileID: -2752754068695065898}
   - {fileID: -7308206813273506563}
-  - {fileID: 4260894987402040408}
-  m_RendererFeatureMap: d65a6b5dc240ccd9fd3cbeb59f08949a585457756abd213b
+  m_RendererFeatureMap: 585457756abd213bd65a6b5dc240ccd9fd3cbeb59f08949a
   m_UseNativeRenderPass: 0
   postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
   xrSystemData: {fileID: 11400000, guid: 60e1133243b97e347b653163a8c01b64, type: 2}
@@ -122,11 +122,11 @@ MonoBehaviour:
   m_Active: 1
   m_Shader: {fileID: 4800000, guid: 0849e84e3d62649e8882e9d6f056a017, type: 3}
   m_Settings:
-    Downsample: 0
+    Downsample: 1
     AfterOpaque: 1
     Source: 1
     NormalSamples: 1
     Intensity: 1
-    DirectLightingStrength: 1
-    Radius: 0.77
+    DirectLightingStrength: 0.174
+    Radius: 0.2
     SampleCount: 4

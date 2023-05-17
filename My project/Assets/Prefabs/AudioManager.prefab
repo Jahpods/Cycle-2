@@ -81,8 +81,20 @@ MonoBehaviour:
     pitch: 0.6
     loop: 0
     source: {fileID: 0}
-  - name: background
-    clip: {fileID: 8300000, guid: 1acba5556ac973d8fbf078169b5c4b59, type: 3}
+  - name: click
+    clip: {fileID: 8300000, guid: 473176441341609e89fa17c82dc8d86f, type: 3}
+    volume: 1
+    pitch: 0.6
+    loop: 0
+    source: {fileID: 0}
+  - name: plush1
+    clip: {fileID: 8300000, guid: 6c44d5508ed9ad90c862e98ac7ca2673, type: 3}
+    volume: 1
+    pitch: 0.6
+    loop: 0
+    source: {fileID: 0}
+  - name: plush2
+    clip: {fileID: 8300000, guid: 225a6f8d9065e1500acbbec5d0af8ce7, type: 3}
     volume: 1
     pitch: 0.6
     loop: 0

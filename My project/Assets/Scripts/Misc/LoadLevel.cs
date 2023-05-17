@@ -6,6 +6,11 @@ using UnityEngine.SceneManagement;
 public class LoadLevel : MonoBehaviour
 {
     public void LoadScene(string scene){
+        GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>().Play("click");
         SceneManager.LoadScene(scene);
+    }
+
+    public void QuitGame(){
+        Application.Quit();
     }
 }

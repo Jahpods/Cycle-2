@@ -46,7 +46,7 @@ public class AudioManager : MonoBehaviour
 		}
 		Play("Menu", 0.05f);
 		if(SceneManager.GetActiveScene().name == "FirstLevel"){
-			Play("background", 0.04f);
+			//Play("background", 0.04f);
 		}
 	}
 

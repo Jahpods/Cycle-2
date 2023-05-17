@@ -18,13 +18,18 @@ public class TimerLogic : MonoBehaviour
     private Slider sld;
     [SerializeField]
     private float sTimeLimit;
+    [SerializeField]
     private float cTimeLimit;
 
     private GameObject[] enemies;
     private int maxEnemyCount;
+
+    private AudioManager am;
+    private float timeBetweenTick = 0.5f;
     // Start is called before the first frame update
     void Start()
     {
+        am = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
         sld.maxValue = sTimeLimit;
         sld.value = sTimeLimit;
         cTimeLimit = sTimeLimit;
@@ -50,6 +55,15 @@ public class TimerLogic : MonoBehaviour
         }
     }
 
+    void FixedUpdate(){
+        if(timeBetweenTick <= 0){
+            PlayTick();
+            timeBetweenTick = Mathf.Lerp(0.01f, 2f, Mathf.Pow((cTimeLimit + sTimeLimit/2) / sTimeLimit, 2f));
+        }else{
+            timeBetweenTick -= Time.deltaTime;
+        }
+    }
+
     void CalculateLines(){
         int index = 0;
         enemies = GameObject.FindGameObjectsWithTag("Enemy");
@@ -66,6 +80,11 @@ public class TimerLogic : MonoBehaviour
     public void EnemyDies(){
         cTimeLimit += 30f;
         cTimeLimit = Mathf.Clamp(cTimeLimit, 0, sTimeLimit);
+    }
+
+    void PlayTick(){
+        float vol = (Mathf.Clamp01((sTimeLimit / cTimeLimit / 2f) - 1.25f));
+        am.Play("tick", vol);
     }
 
     void OnDrawGizmos(){

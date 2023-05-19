@@ -31,6 +31,9 @@ public class EnemyObject : MonoBehaviour, IGrowable, IPickUp
     private float startLaughCooldown = 0.6f;
     private float laughCooldown;
 
+    [SerializeField]
+    private GameObject deathMessage;
+
     void Start(){
         enemyPosition = transform.position;
         am = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
@@ -128,6 +131,7 @@ public class EnemyObject : MonoBehaviour, IGrowable, IPickUp
             Instantiate(parts, transform.position, Quaternion.identity);
             GameObject.FindGameObjectWithTag("Volume").GetComponent<EditLook>().UpdateLook();
             GameObject.FindGameObjectWithTag("Time").GetComponent<TimerLogic>().EnemyDies();
+            Instantiate(deathMessage, transform.position, Quaternion.identity);
             am.Play("dies");
             Destroy(gameObject);
         }

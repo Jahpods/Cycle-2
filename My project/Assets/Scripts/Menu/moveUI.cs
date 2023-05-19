@@ -4,21 +4,25 @@ using UnityEngine;
 
 public class moveUI : MonoBehaviour
 {
+    [SerializeField]
     Vector3 targetPosition;
+    [SerializeField]
     Vector3 newPosition;
-
+    [SerializeField]
     bool Switch;
 
     void Start(){
+        Switch = false;
         targetPosition = transform.position;
         newPosition = targetPosition + Vector3.up * Screen.height * 0.15f;
     }
 
-    void FixedUpdate(){
+    void Update(){
+        Debug.Log("moving");
         if(Switch){
-            transform.position = Vector3.Lerp(transform.position, newPosition, 0.1f);
+            transform.position = Vector3.Lerp(transform.position, newPosition, Time.unscaledDeltaTime * 2);
         }else{
-            transform.position = Vector3.Lerp(transform.position, targetPosition, 0.1f);
+            transform.position = Vector3.Lerp(transform.position, targetPosition, Time.unscaledDeltaTime * 2);
         }
         
     }

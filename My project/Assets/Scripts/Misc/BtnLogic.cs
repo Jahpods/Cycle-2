@@ -8,12 +8,10 @@ public class BtnLogic : MonoBehaviour
     private Transform btn;
     [SerializeField]
     private Transform door;
-    [SerializeField]
-    private LineRenderer lr;
+
     [SerializeField]
     private float speed;
-    [SerializeField]
-    private Color[] colours;
+
     private bool btnPressed;
     private Vector3 doorPos;
     private AudioManager am;
@@ -42,11 +40,9 @@ public class BtnLogic : MonoBehaviour
         if(btnPressed){
             door.localPosition = Vector3.MoveTowards(door.localPosition, doorPos + Vector3.down * door.localScale.y, Time.deltaTime * speed);
             btn.localPosition = Vector3.MoveTowards(btn.localPosition, Vector3.up * 0.4f, Time.deltaTime * speed);
-            //lr.material.SetColor("_Color", colours[0]);
         }else{
             btn.localPosition = Vector3.MoveTowards(btn.localPosition, Vector3.up * 0.8f, Time.deltaTime);
             door.localPosition = Vector3.MoveTowards(door.localPosition, doorPos, Time.deltaTime * speed);
-            //lr.material.SetColor("_Color", colours[1]);
         }
     }
 }

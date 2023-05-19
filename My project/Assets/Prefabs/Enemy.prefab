@@ -79,6 +79,7 @@ MonoBehaviour:
   parts: {fileID: 4480980963563763805, guid: 3732e2873301703a4b11a0af886326cd, type: 3}
   sF: {x: 0, y: 0, z: 0}
   enemyPosition: {x: 0, y: 0, z: 0}
+  deathMessage: {fileID: 4872901301690095778, guid: 99ebb8b58ed77ee659ab43b88591baa1, type: 3}
 --- !u!1 &8752870550922163501
 GameObject:
   m_ObjectHideFlags: 0

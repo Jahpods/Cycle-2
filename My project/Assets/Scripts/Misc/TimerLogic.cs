@@ -21,7 +21,8 @@ public class TimerLogic : MonoBehaviour
     [SerializeField]
     private float cTimeLimit;
 
-    private GameObject[] enemies;
+    [HideInInspector]
+    public GameObject[] enemies;
     private int maxEnemyCount;
 
     private AudioManager am;

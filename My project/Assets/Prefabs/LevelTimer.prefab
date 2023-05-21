@@ -125,6 +125,16 @@ MonoBehaviour:
   childPos: {x: -9, y: 14.5, z: -39}
   sld: {fileID: 412764907173647735}
   sTimeLimit: 180
+  cTimeLimit: 0
+  musicLayers:
+  - layer1
+  - layer2
+  - layer3
+  - layer4
+  - layer5
+  - layer6
+  - layer7
+  enemies: []
 --- !u!120 &750769104250348989
 LineRenderer:
   m_ObjectHideFlags: 0

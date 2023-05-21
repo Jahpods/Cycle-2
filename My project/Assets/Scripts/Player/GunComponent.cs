@@ -91,11 +91,13 @@ public class GunComponent : MonoBehaviour
         // Input.GetMouseButtonDown(2) OLD CONTROLS MIDDLE CLICK TO PICK UP
         if(Input.GetMouseButtonDown(2)){
             if(heldObj == null && canPickUp()){
+                am.Play("pickup");
                 PickUpObject(target.transform.gameObject);
             }else if(heldObj != null){
                 DropObject();
+            }else{
+                am.Play("pickup");
             }
-
         }
 
         //Handle heldArea movement

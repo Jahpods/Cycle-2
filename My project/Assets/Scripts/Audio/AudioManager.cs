@@ -33,6 +33,7 @@ public class AudioManager : MonoBehaviour
 			s.source.pitch = s.pitch;
 			s.source.loop = s.loop;
 		}
+		SceneManager.sceneLoaded += SceneStart;
 	}
 
 	public float GetGlobalVolume(){
@@ -52,16 +53,6 @@ public class AudioManager : MonoBehaviour
         }
 	}
 
-	void Start(){
-		foreach(Sound s in sounds){
-			Pause(s.name);
-		}
-		Play("Menu");
-		if(SceneManager.GetActiveScene().name == "FirstLevel"){
-			//Play("background", 0.04f);
-		}
-	}
-
 	public void Play(string name, float vol = -1, float pit = -1f){
 		Sound s = Array.Find(sounds, sound => sound.name == name);
 		if(s == null){
@@ -76,6 +67,17 @@ public class AudioManager : MonoBehaviour
 		s.source.Play();
 	}
 
+	void SceneStart(Scene scene, LoadSceneMode mode){
+		foreach(Sound s in sounds){
+			Pause(s.name);
+		}
+		if(scene.name != "MainMenu"){
+			Pause("Menu");
+		}else{
+			Play("Menu");
+		}
+	}
+
 	public void Pause(string name){
 		Sound s = Array.Find(sounds, sound => sound.name == name);
 		if(s == null){
@@ -83,5 +85,14 @@ public class AudioManager : MonoBehaviour
 			return;
 		}
 		s.source.Pause();
+	}
+
+	public void Mute(string name, bool mute = false){
+		Sound s = Array.Find(sounds, sound => sound.name == name);
+		if(s == null){
+			Debug.LogWarning("Sound " + name + " was not found");
+			return;
+		}
+		s.source.mute = mute;
 	}
 }

@@ -135,3 +135,51 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     source: {fileID: 0}
+  - name: pickup
+    clip: {fileID: 8300000, guid: c4fda4f974a012bcf9b14a0e7e724c6c, type: 3}
+    volume: 0.5
+    pitch: 0.7
+    loop: 0
+    source: {fileID: 0}
+  - name: layer1
+    clip: {fileID: 8300000, guid: 9bf1577421611cae69f531fe5181a871, type: 3}
+    volume: 0.1
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: layer2
+    clip: {fileID: 8300000, guid: 72e6cec9dad5ca185ab606200a099699, type: 3}
+    volume: 0.1
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: layer3
+    clip: {fileID: 8300000, guid: 1233c893ed505c93bbb19e942561185e, type: 3}
+    volume: 0.1
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: layer4
+    clip: {fileID: 8300000, guid: cf84b0665a039a586be559484523ca15, type: 3}
+    volume: 0.1
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: layer5
+    clip: {fileID: 8300000, guid: 53cdcdd6335ec31ac8d707f8420ce7fb, type: 3}
+    volume: 0.02
+    pitch: 0.9
+    loop: 1
+    source: {fileID: 0}
+  - name: layer6
+    clip: {fileID: 8300000, guid: a8e98c43d50fb927f9b7f0e7a1be9373, type: 3}
+    volume: 0.02
+    pitch: 0.9
+    loop: 1
+    source: {fileID: 0}
+  - name: layer7
+    clip: {fileID: 8300000, guid: 8f42ccdba6d263ca499c50da0296bd04, type: 3}
+    volume: 0.1
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}

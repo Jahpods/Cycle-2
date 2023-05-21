@@ -20,6 +20,8 @@ public class TimerLogic : MonoBehaviour
     private float sTimeLimit;
     [SerializeField]
     private float cTimeLimit;
+    [SerializeField]
+    private string[] musicLayers;
 
     [HideInInspector]
     public GameObject[] enemies;
@@ -57,6 +59,7 @@ public class TimerLogic : MonoBehaviour
     }
 
     void FixedUpdate(){
+        CalculateMusic();
         if(timeBetweenTick <= 0){
             PlayTick();
             timeBetweenTick = Mathf.Lerp(0.01f, 2f, Mathf.Pow((cTimeLimit + sTimeLimit/2) / sTimeLimit, 2f));
@@ -78,13 +81,27 @@ public class TimerLogic : MonoBehaviour
         }
     }
 
+    void CalculateMusic(){
+        foreach(string name in musicLayers){
+            am.Play(name, 0.1f);
+            am.Mute(name, true);
+        }
+        int currentIndex = Mathf.CeilToInt((Mathf.Abs(cTimeLimit - sTimeLimit) / sTimeLimit) * musicLayers.Length);
+        for(int i = 0; i < musicLayers.Length; i++){         
+            if(i < currentIndex){
+                am.Mute(musicLayers[i], false);
+            }
+            
+        }
+    }
+
     public void EnemyDies(){
         cTimeLimit += 30f;
         cTimeLimit = Mathf.Clamp(cTimeLimit, 0, sTimeLimit);
     }
 
     void PlayTick(){
-        float vol = (Mathf.Clamp01((sTimeLimit / cTimeLimit / 2f) - 1.25f));
+        float vol = (Mathf.Clamp01((sTimeLimit / cTimeLimit * 0.5f) - 1.25f)) * 0.5f;
         am.Play("tick", vol);
     }
 

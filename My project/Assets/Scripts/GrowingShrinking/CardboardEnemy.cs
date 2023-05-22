@@ -98,6 +98,7 @@ public class CardboardEnemy : MonoBehaviour, IGrowable, IPickUp
             scaleFactor -= transform.localScale * Time.deltaTime;
             if((scaleFactor.x + scaleFactor.y + scaleFactor.z) / 3 < 0.3f){
                 Instantiate(parts, transform.position, Quaternion.identity);
+                GameObject.FindGameObjectWithTag("Time").GetComponent<trainingTimer>().EnemyDies();
                 Destroy(gameObject);
             }
         }

@@ -166,18 +166,6 @@ MonoBehaviour:
     loop: 1
     source: {fileID: 0}
   - name: layer5
-    clip: {fileID: 8300000, guid: 53cdcdd6335ec31ac8d707f8420ce7fb, type: 3}
-    volume: 0.02
-    pitch: 0.9
-    loop: 1
-    source: {fileID: 0}
-  - name: layer6
-    clip: {fileID: 8300000, guid: a8e98c43d50fb927f9b7f0e7a1be9373, type: 3}
-    volume: 0.02
-    pitch: 0.9
-    loop: 1
-    source: {fileID: 0}
-  - name: layer7
     clip: {fileID: 8300000, guid: 8f42ccdba6d263ca499c50da0296bd04, type: 3}
     volume: 0.1
     pitch: 1

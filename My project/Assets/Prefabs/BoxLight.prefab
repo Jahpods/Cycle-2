@@ -127,5 +127,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7259c93167bcc45afae94cedf3b6bd36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minScale: {x: 0.2, y: 0.2, z: 0.2}
-  sF: {x: 1, y: 1, z: 1}
+  mask:
+    serializedVersion: 2
+    m_Bits: 1527

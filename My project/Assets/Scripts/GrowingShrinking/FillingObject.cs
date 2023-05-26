@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class FillingObject : MonoBehaviour, IGrowable, IPickUp
 {
+    public LayerMask mask;
     private Vector3 minScale;
     private Vector3 sF;
     public Vector3 scaleFactor {
@@ -17,7 +18,7 @@ public class FillingObject : MonoBehaviour, IGrowable, IPickUp
     }
 
     private Rigidbody rb;
-    private float boundary = 3.13f;
+    private float boundary = 3.2f;
     private AudioManager am;
     private Transform player;
 
@@ -47,38 +48,15 @@ public class FillingObject : MonoBehaviour, IGrowable, IPickUp
 
     public void Grow(){   
         float yGrowth = Mathf.Clamp(transform.localScale.y, 0.1f, 5.0f);
-        if(Physics.BoxCast(transform.position, 
-                           new Vector3(transform.localScale.x/2, transform.localScale.y/5,transform.localScale.z/2), 
-                           transform.up, transform.rotation,
-                           scaleFactor.y / boundary) &&
-            Physics.BoxCast(transform.position, 
-                           new Vector3(transform.localScale.x/2, transform.localScale.y/5,transform.localScale.z/2), 
-                           -transform.up, transform.rotation,
-                           scaleFactor.y / boundary)){
+        if(CheckBlocked(new Vector3(transform.localScale.x/2, transform.localScale.y/5,transform.localScale.z/2), transform.up, scaleFactor.y / boundary)){
             yGrowth = 0;
         }
-
         float xGrowth = Mathf.Clamp(transform.localScale.x, 0.1f, 5.0f);
-        if(Physics.BoxCast(transform.position, 
-                           new Vector3(transform.localScale.x/5, transform.localScale.y/2,transform.localScale.z/2), 
-                           transform.right, transform.rotation,
-                           scaleFactor.x / boundary) && 
-            Physics.BoxCast(transform.position, 
-                           new Vector3(transform.localScale.x/5, transform.localScale.y/2,transform.localScale.z/2), 
-                           -transform.right, transform.rotation,
-                           scaleFactor.x / boundary)){
+        if(CheckBlocked(new Vector3(transform.localScale.x/5, transform.localScale.y/2,transform.localScale.z/2), transform.right, scaleFactor.x / boundary)){
             xGrowth = 0;
         }
-
         float zGrowth = Mathf.Clamp(transform.localScale.z, 0.1f, 5.0f);
-        if(Physics.BoxCast(transform.position, 
-                           new Vector3(transform.localScale.x/2, transform.localScale.y/2,transform.localScale.z/5), 
-                           transform.forward, transform.rotation,
-                           scaleFactor.z / boundary) && 
-            Physics.BoxCast(transform.position, 
-                           new Vector3(transform.localScale.x/2, transform.localScale.y/2,transform.localScale.z/5), 
-                           -transform.forward, transform.rotation,
-                           scaleFactor.z / boundary)){
+        if(CheckBlocked(new Vector3(transform.localScale.x/2, transform.localScale.y/2,transform.localScale.z/5), transform.forward, scaleFactor.z / boundary)){
             zGrowth = 0;
         }
 
@@ -86,6 +64,12 @@ public class FillingObject : MonoBehaviour, IGrowable, IPickUp
 
         scaleFactor += growVector * Time.deltaTime;
     }
+
+    private bool CheckBlocked(Vector3 size,Vector3 direction, float distance){
+        return (Physics.BoxCast(transform.position, size, direction, transform.rotation, distance, mask) &&
+                Physics.BoxCast(transform.position, size, -direction, transform.rotation, distance, mask));
+    }
+
     public void Shrink(){ 
         scaleFactor -= transform.localScale * Time.deltaTime;
         if(scaleFactor.x < minScale.x){

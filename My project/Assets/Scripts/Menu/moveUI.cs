@@ -18,7 +18,6 @@ public class moveUI : MonoBehaviour
     }
 
     void Update(){
-        Debug.Log("moving");
         if(Switch){
             transform.position = Vector3.Lerp(transform.position, newPosition, Time.unscaledDeltaTime * 2);
         }else{

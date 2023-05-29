@@ -177,3 +177,9 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     source: {fileID: 0}
+  - name: celebration
+    clip: {fileID: 8300000, guid: 4b614d6ceb6def71cb51bfa5ea7912cb, type: 3}
+    volume: 0.02
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}

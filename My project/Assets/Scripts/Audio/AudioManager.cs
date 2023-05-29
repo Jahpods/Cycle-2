@@ -73,6 +73,9 @@ public class AudioManager : MonoBehaviour
 		}
 		if(scene.name != "MainMenu"){
 			Pause("Menu");
+			if(scene.name == "Won"){
+				Play("celebration");
+			}
 		}else{
 			Play("Menu");
 		}

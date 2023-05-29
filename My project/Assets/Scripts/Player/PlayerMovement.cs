@@ -163,7 +163,7 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate(){
         //Vertical Rotation
         cameraVerticalRotation -= mouseVector.y * sensitivity;
-        cameraVerticalRotation = Mathf.Clamp(cameraVerticalRotation,-80,80);
+        cameraVerticalRotation = Mathf.Clamp(cameraVerticalRotation,-89,89);
 
         ch.localEulerAngles = Vector3.right * cameraVerticalRotation;
 

@@ -1739,8 +1739,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menuScreen: {fileID: 7856306795101286974}
-  components:
-  - {fileID: 4466765133200543995}
+  component: {fileID: 4466765133200543995}
 --- !u!1 &2778598610785695834
 GameObject:
   m_ObjectHideFlags: 0

@@ -9,12 +9,15 @@ public class MenuController : MonoBehaviour
     [SerializeField]
     private GameObject menuScreen;
     [SerializeField]
-    private GunComponent[] components;
+    private GunComponent component;
 
-    private bool wasFalse;
+    private bool def;
 
     void Start(){
-        UnPause();
+        menuScreen.SetActive(false);
+        Time.timeScale = 1;
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     void Update(){
@@ -29,10 +32,9 @@ public class MenuController : MonoBehaviour
     }
 
     void StartPause(){
-        foreach(GunComponent c in components){
-            wasFalse = c.enabled == false;
-            c.enabled = false;
-        }
+        def = component.enabled;
+        Debug.Log(def);
+        component.enabled = false;
         menuScreen.SetActive(true);
         Time.timeScale = 0;
         Cursor.visible = true;
@@ -40,11 +42,7 @@ public class MenuController : MonoBehaviour
     }
 
     void UnPause(){
-        foreach(GunComponent c in components){
-            if(!wasFalse){
-               c.enabled = true; 
-            }  
-        }
+        component.enabled = def;
         menuScreen.SetActive(false);
         Time.timeScale = 1;
         Cursor.visible = false;
